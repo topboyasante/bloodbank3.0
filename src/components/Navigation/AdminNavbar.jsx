@@ -33,7 +33,7 @@ function AdminNavbar() {
                     <RiDashboardFill size={20}/>
                     <p className='font-light text-md'>Dashboard</p>
             </NavLink>
-            <NavLink to='/blood-bank/app/admin/donor' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
+            <NavLink to='/blood-bank/app/donor/donors' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <RiHeartLine size={20}/>
                     <p className='font-light text-md'>Donor</p>
             </NavLink>

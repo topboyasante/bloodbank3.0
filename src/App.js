@@ -6,6 +6,8 @@ import AdminLogin from './pages/Admin/Authentication/AdminLogin'
 import AdminSignUp from './pages/Admin/Authentication/AdminSignUp'
 import Homepage from './pages/Homepage/Homepage'
 import ProtectedRoutes from './pages/Routing/ProtectedRoutes'
+import AdminDonor from './pages/Admin/App/AdminDonor'
+import DonorProfileLg from './components/Cards/DonorProfileLg'
 
 import DonorLogin from './pages/Donor/LoginSignUp/DonorLogin'
 import DonorSignUp from './pages/Donor/LoginSignUp/DonorSignUp'
@@ -30,6 +32,11 @@ function App() {
             {/* Blood Bank App Routes */}
             <Route path='app' element={<ProtectedRoutes isLoggedIn={LoginState}></ProtectedRoutes>}>
                 <Route path='dashboard' element={<Dashboard/>}/>
+                <Route path='donor'>
+                  <Route path='donors' element={<AdminDonor/>}>
+                    <Route path=':donorID' element={<DonorProfileLg/>}/>
+                  </Route>
+                </Route>
             </Route>
           </Route>
 
