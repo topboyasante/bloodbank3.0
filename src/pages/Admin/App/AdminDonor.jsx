@@ -39,7 +39,7 @@ function AdminDonor() {
       <section className='lg:w-[50%]'>
         {/* Buttons */}
         <div className='flex justify-between'>
-          <Link to='/bank/app/admin/request-supply' className='border rounded-lg p-1 shadow-sm border-gray-300 flex items-center gap-2 hover:border-gray-500 ease duration-150'>
+          <Link to='/blood-bank/app/donor/send-request' className='border rounded-lg p-1 shadow-sm border-gray-300 flex items-center gap-2 hover:border-gray-500 ease duration-150'>
             <p>Send Request</p>
             <IoIosSend/>
           </Link >

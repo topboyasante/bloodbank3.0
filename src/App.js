@@ -1,15 +1,19 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
+import Homepage from './pages/Homepage/Homepage'
+
+// Blood Bank
 import Dashboard from './pages/Admin/App/Dashboard'
 import AdminLogin from './pages/Admin/Authentication/AdminLogin'
 import AdminSignUp from './pages/Admin/Authentication/AdminSignUp'
-import Homepage from './pages/Homepage/Homepage'
 import ProtectedRoutes from './pages/Routing/ProtectedRoutes'
 import AdminDonor from './pages/Admin/App/AdminDonor'
 import DonorProfileLg from './components/Cards/DonorProfileLg'
 import AdminAddDonor from './pages/Admin/App/AdminAddDonor'
+import AdminSendRequest from './pages/Admin/App/AdminSendRequest'
 
+// Donor
 import DonorLogin from './pages/Donor/LoginSignUp/DonorLogin'
 import DonorSignUp from './pages/Donor/LoginSignUp/DonorSignUp'
 import DashBoard from './pages/Donor/Dashboard/DashBoard'
@@ -38,6 +42,7 @@ function App() {
                     <Route path=':donorID' element={<DonorProfileLg/>}/>
                   </Route>
                   <Route path='/blood-bank/app/donor/add-donor' element={<AdminAddDonor/>}/>
+                  <Route path='/blood-bank/app/donor/send-request' element={<AdminSendRequest/>}/>
                 </Route>
             </Route>
           </Route>
