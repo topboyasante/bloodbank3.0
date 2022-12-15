@@ -4,6 +4,7 @@ import { donorActions } from '../../../redux/donorSlice';
 import { useSelector,useDispatch  } from 'react-redux'
 import { useEffect } from 'react';
 import MapImg from '../../../Images/map.png'
+import { donationActions } from '../../../redux/donationsSlice';
 
 function Dashboard() {
   const donorList = useSelector((state)=>state.donor.donors)
@@ -14,9 +15,16 @@ function Dashboard() {
     const data = response.data
     dispatch(donorActions.setDonors(data))
   }
+
+  const fetchDonationsAPI = async ()=>{
+    const response = await axios.get(`https://localhost:7253/Donations`);
+    const data = response.data
+    dispatch(donationActions.setDonations(data))
+  }
   
   useEffect(() => {
     fetchDonorAPI()
+    fetchDonationsAPI()
   }, [])
   return (
     <div className='lg:w-[80vw] mx-5 h-[80vh] mt-[5em] lg:mt-0'>

@@ -18,6 +18,8 @@ import DonorLogin from './pages/Donor/LoginSignUp/DonorLogin'
 import DonorSignUp from './pages/Donor/LoginSignUp/DonorSignUp'
 import DashBoard from './pages/Donor/Dashboard/DashBoard'
 import DonorProtectedRoutes from './pages/Routing/DonorProtectedRoutes'
+import AdminDonations from './pages/Admin/App/AdminDonations'
+import AdminAddNewDonation from './pages/Admin/App/AdminAddNewDonation'
 
 function App() {
   const LoginState = useSelector((state)=>state.auth.isLoggedIn)
@@ -42,6 +44,10 @@ function App() {
                   </Route>
                   <Route path='/blood-bank/app/donor/add-donor' element={<AdminAddDonor/>}/>
                   <Route path='/blood-bank/app/donor/send-request' element={<AdminSendRequest/>}/>
+                </Route>
+                <Route path='donations'>
+                  <Route index element={<AdminDonations/>}/>
+                  <Route path='add-new-donation' element={<AdminAddNewDonation/>}/>
                 </Route>
             </Route>
           </Route>

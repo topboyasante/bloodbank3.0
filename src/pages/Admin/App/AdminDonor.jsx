@@ -6,7 +6,7 @@ import DonorProfile from '../../../components/Cards/DonorProfile'
 
 function AdminDonor() {
   const donorList = useSelector((state)=>state.donor.donors)
-  const [donorSearchKeyword,setDonorSearchKeyword] = useState('')
+  const [searchKeyword,setSearchKeyword] = useState('')
   
   return (
     <div className='w-[84vw] mx-auto lg:mx-5 lg:h-[85vh] flex flex-col gap-[2em] lg:flex-row justify-between mt-[5em] lg:mt-0 p-2'>
@@ -33,8 +33,8 @@ function AdminDonor() {
               <input
                   type="text"
                   placeholder="Search"
-                  value={donorSearchKeyword}
-                  onChange={(e)=>{setDonorSearchKeyword(e.target.value)}}
+                  value={searchKeyword}
+                  onChange={(e)=>{setSearchKeyword(e.target.value)}}
                   className="w-full py-1 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-gray-600"
               />
           </div>
@@ -46,7 +46,7 @@ function AdminDonor() {
           <div className='border h-[75vh] overflow-y-scroll bg-white px-2 py-5 flex flex-col gap-5 shadow-md rounded-md'>
             {/* Donor List Shows Here. */}
             {
-              donorSearchKeyword !== '' ? donorList.filter((item)=>item.fullName.toLowerCase().includes(donorSearchKeyword.toLowerCase())).map((item)=>{
+              searchKeyword !== '' ? donorList.filter((item)=>item.fullName.toLowerCase().includes(searchKeyword.toLowerCase())).map((item)=>{
                 return(
                   <DonorProfile
                   key={item.id}
