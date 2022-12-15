@@ -22,9 +22,8 @@ import DonorProtectedRoutes from './pages/Routing/DonorProtectedRoutes'
 function App() {
   const LoginState = useSelector((state)=>state.auth.isLoggedIn)
 
-  // const [userlogin, setUserlogin] = useState(false)
   return (
-    <main>
+      <main>
       <Routes>
           {/* Root Route */}
           <Route path='/' element={<Homepage/>}/>
@@ -58,7 +57,7 @@ function App() {
             <Route index element={<DashBoard/>} />
            </Route>
       </Routes>
-    </main>
+      </main>
   )
 }
 

@@ -12,7 +12,6 @@ function Dashboard() {
   const fetchDonorAPI = async ()=>{
     const response = await axios.get(`https://localhost:7253/Donors`);
     const data = response.data
-    console.log(data)
     dispatch(donorActions.setDonors(data))
   }
   

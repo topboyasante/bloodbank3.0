@@ -24,7 +24,7 @@ function DonorProfile(props) {
     bloodTypeAsText = "A-"
    break;
   case "BNegative":
-    bloodTypeAsText = "B_"
+    bloodTypeAsText = "B-"
    break;
   case "ONegative":
     bloodTypeAsText = "O-"
@@ -33,7 +33,7 @@ function DonorProfile(props) {
  }
   return (
     <Link to={`${props.item.id}`}>
-      <main className='rounded-md shadow px-2 py-3 flex justify-center items-center gap-[4em]'>
+      <main className='rounded-md shadow px-2 py-3 flex justify-center items-center gap-[4em] cursor-pointer'>
         <div className='w-[20%]'>
         {/* <img src={props.item.img} alt={props.item.name} className='w-[50px] h-[50px] rounded-full object-cover' /> */}
         </div>
