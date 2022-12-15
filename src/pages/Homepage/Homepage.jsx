@@ -71,7 +71,7 @@ function Homepage() {
                 </Menu.Item>
               </Link>
 
-             <Link to='bank'>
+             <Link to='blood-bank'>
                 <Menu.Item>
                     {({ active }) => (
                       <button
@@ -149,7 +149,7 @@ function Homepage() {
                 </Menu.Item>
               </Link>
 
-             <Link to='bank'>
+             <Link to='blood-bank'>
                 <Menu.Item>
                     {({ active }) => (
                       <button
