@@ -15,7 +15,7 @@ const donorSlice = createSlice({
             state.donations = [...state.donations,action.payload]
         },
         removeDonation(state,action){
-            const newDonationsList = state.donations.filter(donation=> donation.id !== action.payload)
+            const newDonationsList = state.donations.splice(action.payload, 1)
             state.donations = newDonationsList
         }
     }
