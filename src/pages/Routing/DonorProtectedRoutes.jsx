@@ -3,7 +3,7 @@ import { Outlet, Navigate } from 'react-router-dom'
 // import AdminNavbar from '../../components/Navigation/AdminNavbar'
 // import TopNavbar from '../../components/Navigation/TopNavbar'
 
-function DonorProtectedRoutes({isLoggedIn,notLoggedInUrl}) {
+function DonorProtectedRoutes({isLoggedIn}) {
   return (
     isLoggedIn? <main className='flex'>
         {/* <AdminNavbar/> */}
@@ -12,7 +12,7 @@ function DonorProtectedRoutes({isLoggedIn,notLoggedInUrl}) {
             {/* <TopNavbar/> */}
             {/* <Outlet/> */}
         </section>
-    </main> : <Navigate to={notLoggedInUrl}/>
+    </main> : <Navigate to='/donor/donor-login'/>
   )
 }
 

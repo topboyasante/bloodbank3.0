@@ -5,33 +5,42 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { addDays } from "date-fns";
+import axios from "axios"
 
 const DonorSignUp = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [location, setLocation] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState(new Date());
+  const [dateOfBirth, setDateOfBirth] = useState();
   const [sex, setSex] = useState("");
   const [password, setPassword] = useState("");
   const [conPassword, setConPassword] = useState("");
   const [bloodGroup, setBloodGroup] = useState("");
   const [weight, setWeight] = useState()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(
-      fullName,
-      email,
-      phone,
-      location,
-      dateOfBirth.toDateString(),
-      sex,
-      password,
-      conPassword,
-      bloodGroup,
-      weight
-    );
+    const data = {
+        fullName : fullName,
+        email: email,
+        phoneNumber : phone,
+        location : location,
+        dateOfBirth : dateOfBirth,
+        sex : sex,
+        password : password,
+        confirmPassword : conPassword,
+        bloodType : bloodGroup,
+        weight : weight 
+    }
+
+    await axios.post('https://localhost:7253/Accounts/register',  data)
+    .then(response =>{
+        console.log(response, "done")
+    })
+    .catch(err => {
+         console.log(err)
+    })
   };
 
   return (
@@ -123,7 +132,13 @@ const DonorSignUp = () => {
             <div className="mb-3">
               <label className="font-normal text-sm">Date of Birth</label>
               <br />
-              <DatePicker
+
+              <input 
+                className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black"
+                value = {dateOfBirth}
+              type="date" name="" id="" 
+              onChange={() => setDateOfBirth()} />
+              {/* <DatePicker
                 selected={dateOfBirth}
                 onChange={(date) => setDateOfBirth(date)}
                 maxDate={addDays(new Date(), 1)}
@@ -134,7 +149,7 @@ const DonorSignUp = () => {
                 // placeholderText="dd mm yyyy"
                 className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black"
                 required
-                />
+                /> */}
 
               {/* <input
                 value={dateOfBirth}
@@ -226,6 +241,8 @@ const DonorSignUp = () => {
           </h3>
         </div>
       </section>
+
+      <h1>{dateOfBirth}</h1>
     </main>
   );
 };
