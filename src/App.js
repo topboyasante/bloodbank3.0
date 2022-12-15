@@ -1,9 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
-import Dashboard from './pages/Donor/Dashboard/Dashboard'
-import DonorLogin from './pages/Donor/LoginSignUp/DonorLogin'
-import DonorSignUp from './pages/Donor/LoginSignUp/DonorSignUp'
 import Dashboard from './pages/Admin/App/Dashboard'
 import AdminLogin from './pages/Admin/Authentication/AdminLogin'
 import AdminSignUp from './pages/Admin/Authentication/AdminSignUp'
@@ -17,6 +14,17 @@ function App() {
       <Routes>
           {/* Root Route */}
           <Route path='/' element={<Homepage/>}/>
+
+          {/* Blood Bank Routes */}
+          <Route path='/blood-bank'>
+            <Route index element={<AdminLogin/>}/>
+            <Route path='signup' element={<AdminSignUp/>}/>
+
+            {/* Blood Bank App Routes */}
+            <Route path='app' element={<ProtectedRoutes isLoggedIn={LoginState} isNotLoggedInUrl={`/blood-bank`}></ProtectedRoutes>}>
+                <Route path='dashboard' element={<Dashboard/>}/>
+            </Route>
+          </Route>
       </Routes>
     </main>
   )
