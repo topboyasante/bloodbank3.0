@@ -8,6 +8,7 @@ import Homepage from './pages/Homepage/Homepage'
 import ProtectedRoutes from './pages/Routing/ProtectedRoutes'
 import AdminDonor from './pages/Admin/App/AdminDonor'
 import DonorProfileLg from './components/Cards/DonorProfileLg'
+import AdminAddDonor from './pages/Admin/App/AdminAddDonor'
 
 import DonorLogin from './pages/Donor/LoginSignUp/DonorLogin'
 import DonorSignUp from './pages/Donor/LoginSignUp/DonorSignUp'
@@ -36,6 +37,7 @@ function App() {
                   <Route path='donors' element={<AdminDonor/>}>
                     <Route path=':donorID' element={<DonorProfileLg/>}/>
                   </Route>
+                  <Route path='/blood-bank/app/donor/add-donor' element={<AdminAddDonor/>}/>
                 </Route>
             </Route>
           </Route>

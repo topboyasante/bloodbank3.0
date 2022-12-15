@@ -43,7 +43,7 @@ function AdminDonor() {
             <p>Send Request</p>
             <IoIosSend/>
           </Link >
-          <Link to='/bank/app/admin/add-donor' className='border rounded-lg p-1 shadow-sm border-gray-300 flex items-center gap-2 hover:border-gray-500 ease duration-150'>
+          <Link to='/blood-bank/app/donor/add-donor' className='border rounded-lg p-1 shadow-sm border-gray-300 flex items-center gap-2 hover:border-gray-500 ease duration-150'>
             <p>Add Donor</p>
             <IoMdAdd/>
           </Link>

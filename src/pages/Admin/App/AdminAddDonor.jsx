@@ -3,23 +3,23 @@ import { useSelector,useDispatch  } from 'react-redux'
 import React, { useState,useContext, useEffect, Fragment } from 'react'
 import {useNavigate,Link} from 'react-router-dom'
 import { Dialog, Transition } from '@headlessui/react'
-import { donorActions } from '../../redux/donorSlice'
-import { AppContext } from '../../context/AppContext'
+// import { donorActions } from '../../redux/donorSlice'
+// import { AppContext } from '../../context/AppContext'
 import axios from 'axios';
 import Swal from 'sweetalert2'
 
 function AdminAddDonor() {
-  const {isOpen, setIsOpen} = useContext(AppContext)
-  const dispatch = useDispatch()
-  const donorList = useSelector((state)=>state.donor.donors)
+  // const {isOpen, setIsOpen} = useContext(AppContext)
+  // const dispatch = useDispatch()
+  // const donorList = useSelector((state)=>state.donor.donors)
   const navigate = useNavigate();
-  function closeModal() {
-    setIsOpen(false)
-  }
+  // function closeModal() {
+  //   setIsOpen(false)
+  // }
 
-  function openModal() {
-    setIsOpen(true)
-  }
+  // function openModal() {
+  //   setIsOpen(true)
+  // }
 
 //   States
   const[fullName,setFullName]= useState('')
@@ -77,42 +77,42 @@ function AdminAddDonor() {
     setPhoneNumber('')
   }
 
-  const handleSubmit =  async (event) => {
-    event.preventDefault()
-    const newDonorInfo={
-      id:donorList.length+1 ,
-      // img:image,
-      fullName:fullName,
-      dateofBirth:dob,
-      email:email,
-      age:age,
-      gender:gender,
-      location:location,
-      bloodType:bGroup,
-      // lastDonation:lastDonation
-    }
-    if(fullName !=='' && email !=='' && dob !=='' && gender !=='' && age!=='' 
-    && location !=='' &&bGroup !==''  ){
-      dispatch(donorActions.addDonor(newDonorInfo))
-      axios.post('https://localhost:7253/Donors',newDonorInfo)
-      .then((res)=>{
-        console.log(res)
-      }
-      ).catch((err)=>{
-        console.log(err)
-      })
-      resetForm()
-    }
-    else{
-      Swal.fire({
-        title: 'Error!',
-        text: 'The Form is Incomplete or has Wrong Data.',
-        icon: 'error',
-        confirmButtonText: 'Back',
-        confirmButtonColor:'#960000'
-      })
-    }
-  }
+  // const handleSubmit =  async (event) => {
+  //   event.preventDefault()
+  //   const newDonorInfo={
+  //     id:donorList.length+1 ,
+  //     // img:image,
+  //     fullName:fullName,
+  //     dateofBirth:dob,
+  //     email:email,
+  //     age:age,
+  //     gender:gender,
+  //     location:location,
+  //     bloodType:bGroup,
+  //     // lastDonation:lastDonation
+  //   }
+  //   if(fullName !=='' && email !=='' && dob !=='' && gender !=='' && age!=='' 
+  //   && location !=='' &&bGroup !==''  ){
+  //     dispatch(donorActions.addDonor(newDonorInfo))
+  //     axios.post('https://localhost:7253/Donors',newDonorInfo)
+  //     .then((res)=>{
+  //       console.log(res)
+  //     }
+  //     ).catch((err)=>{
+  //       console.log(err)
+  //     })
+  //     resetForm()
+  //   }
+  //   else{
+  //     Swal.fire({
+  //       title: 'Error!',
+  //       text: 'The Form is Incomplete or has Wrong Data.',
+  //       icon: 'error',
+  //       confirmButtonText: 'Back',
+  //       confirmButtonColor:'#960000'
+  //     })
+  //   }
+  // }
   
   return (
     <main className=''>
@@ -206,12 +206,11 @@ function AdminAddDonor() {
             <input type="file" className='border w-[100%] p-2 rounded-md' value={image} onChange={handleImage}/>
           </div>
         </section> */}
-        <Link exact='true' to='/bank/app/admin/donor' onClick={handleSubmit}>
+        <Link exact='true' to='/bank/app/admin/donor'>
         <button className='bg-[#960000] text-white w-[100%] p-2 rounded-lg my-2'>Add Donor</button>
         </Link>
     </form>
-
-      {/* Modal */}
+{/* 
         
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -270,7 +269,7 @@ function AdminAddDonor() {
             </div>
           </div>
         </Dialog>
-      </Transition>
+      </Transition> */}
     </section>
     </main>
   )
