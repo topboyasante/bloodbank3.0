@@ -6,15 +6,17 @@ import { useSelector,useDispatch  } from 'react-redux'
 import { Link, Outlet } from 'react-router-dom'
 import SearchBar from '../../../components/Navigation/SearchBar'
 import DonorProfile from '../../../components/Cards/DonorProfile'
+import { donorActions } from '../../../redux/donorSlice';
 
 function AdminDonor() {
+  const donorList = useSelector((state)=>state.donor.donors)
   const dispatch = useDispatch()
 
   const fetchDonorAPI = async ()=>{
     const response = await axios.get(`https://localhost:7253/Donors`);
     const data = response.data
     console.log(data)
-    // dispatch(donorActions.setDonors(data))
+    dispatch(donorActions.setDonors(data))
   }
   
   useEffect(() => {
@@ -31,6 +33,15 @@ function AdminDonor() {
           <h1>Recent Donors:</h1>
           <div className='border h-[75vh] overflow-y-scroll bg-white px-2 py-5 flex flex-col gap-5 shadow-md rounded-md'>
             {/* Donor List Shows Here. */}
+            {
+              donorList.map((item)=>{
+                return(
+                  <DonorProfile
+                  key={item.id}
+                  item={item}/>
+                )
+              })
+            }
           </div>
         </section>
       </section>
