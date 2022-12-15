@@ -335,7 +335,7 @@ function Homepage() {
                 </Menu.Item>
               </Link>
 
-             <Link to='bank/signup'>
+             <Link to='blood-bank/signup'>
                 <Menu.Item>
                     {({ active }) => (
                       <button
