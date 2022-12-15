@@ -29,23 +29,23 @@ function AdminNavbar() {
      <nav className='hidden w-[15vw] h-[100vh] shadow-md lg:flex flex-col justify-evenly p-8'>
         <img src={Logo} alt="/" className='w-[137px] h-[71px] mb-10'/>
         <section>
-            <NavLink to='/bank/app/dashboard' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
+            <NavLink to='/blood-bank/app/dashboard' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <RiDashboardFill size={20}/>
                     <p className='font-light text-md'>Dashboard</p>
             </NavLink>
-            <NavLink to='/bank/app/admin/donor' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
+            <NavLink to='/blood-bank/app/admin/donor' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <RiHeartLine size={20}/>
                     <p className='font-light text-md'>Donor</p>
             </NavLink>
-            <NavLink to='/bank/app/donations' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
+            <NavLink to='/blood-bank/app/donations' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <FaRegIdCard size={20}/>
                     <p className='font-light text-md'>Donations</p>
             </NavLink>
-            <NavLink to='/bank/app/supply' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
+            <NavLink to='/blood-bank/app/supply' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <AiOutlineShoppingCart size={20}/>
                     <p className='font-light text-md'>Supply</p>
             </NavLink>
-            <NavLink to='/bank/app/settings' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
+            <NavLink to='/blood-bank/app/settings' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <RiSettings2Line size={20}/>
                     <p className='font-light text-md'>Settings</p>
             </NavLink>
@@ -61,23 +61,23 @@ function AdminNavbar() {
         <section className={nav?'w-[45vw] bg-[#ffffff] fixed top-0 left-0 h-[100vh] flex flex-col justify-center items-start ease duration-500 pl-5':'w-[80vw] bg-bbWhite absolute top-0 left-[-1000px] h-[100vh] flex flex-col justify-center ease duration-500'}>
             <img src={Logo} alt="/" className='w-[137px] h-[71px]'/>
             <br />
-            <NavLink onClick={()=>{setNav(false)}} to='/bank/app/dashboard' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
+            <NavLink onClick={()=>{setNav(false)}} to='/blood-bank/app/dashboard' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <RiDashboardFill size={20}/>
                     <p className='font-light text-xl'>Dashboard</p>
             </NavLink>
-            <NavLink onClick={()=>{setNav(false)}} to='/bank/app/admin/donor' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
+            <NavLink onClick={()=>{setNav(false)}} to='/blood-bank/app/admin/donor' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <RiHeartLine size={20}/>
                     <p className='font-light text-xl'>Donor</p>
             </NavLink>
-            <NavLink onClick={()=>{setNav(false)}} to='/bank/app/donations' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
+            <NavLink onClick={()=>{setNav(false)}} to='/blood-bank/app/donations' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <FaRegIdCard size={20}/>
                     <p className='font-light text-xl'>Donations</p>
             </NavLink>
-            <NavLink onClick={()=>{setNav(false)}} to='/bank/app/supply' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
+            <NavLink onClick={()=>{setNav(false)}} to='/blood-bank/app/supply' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <AiOutlineShoppingCart size={20}/>
                     <p className='font-light text-xl'>Supply</p>
             </NavLink>
-            <NavLink onClick={()=>{setNav(false)}} to='/bank/app/settings' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
+            <NavLink onClick={()=>{setNav(false)}} to='/blood-bank/app/settings' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <RiSettings2Line size={20}/>
                     <p className='font-light text-xl'>Settings</p>
             </NavLink>

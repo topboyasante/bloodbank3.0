@@ -35,7 +35,7 @@ const AdminSignUp = () => {
         showConfirmButton: false,
         timer: 1500
       })
-      navigate("/bank")
+      navigate("/blood-bank")
     })
     .catch((err) => {
       Swal.fire({

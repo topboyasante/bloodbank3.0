@@ -3,7 +3,7 @@ import { Outlet, Navigate } from 'react-router-dom'
 import AdminNavbar from '../../components/Navigation/AdminNavbar'
 import TopNavbar from '../../components/Navigation/TopNavbar'
 
-function ProtectedRoutes({isLoggedIn,notLoggedInUrl}) {
+function ProtectedRoutes({isLoggedIn}) {
   return (
     isLoggedIn? <main className='flex'>
         <AdminNavbar/>
@@ -11,7 +11,7 @@ function ProtectedRoutes({isLoggedIn,notLoggedInUrl}) {
             <TopNavbar/>
             <Outlet/>
         </section>
-    </main> : <Navigate to={notLoggedInUrl}/>
+    </main> : <Navigate to='/blood-bank'/>
   )
 }
 

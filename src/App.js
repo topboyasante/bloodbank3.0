@@ -28,7 +28,7 @@ function App() {
             <Route path='signup' element={<AdminSignUp/>}/>
 
             {/* Blood Bank App Routes */}
-            <Route path='app' element={<ProtectedRoutes isLoggedIn={LoginState} isNotLoggedInUrl={`/blood-bank`}></ProtectedRoutes>}>
+            <Route path='app' element={<ProtectedRoutes isLoggedIn={LoginState}></ProtectedRoutes>}>
                 <Route path='dashboard' element={<Dashboard/>}/>
             </Route>
           </Route>
