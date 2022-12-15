@@ -3,6 +3,8 @@ import MainImage from '../../../Images/loginImg.png';
 import Bladie from '../../../Images/BBLogo.png';
 import { useState } from 'react';
 import {useNavigate} from "react-router-dom"
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../../redux/authSlice';
 
 function DonorLogin() {
 
@@ -10,11 +12,14 @@ function DonorLogin() {
   const [password, setPassword] = useState('')
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault()
     // navigate('/donor/dashboard/appointments')
+    dispatch(authActions.login())
     navigate('/donor/dashboard')
+
   }
 
   return (

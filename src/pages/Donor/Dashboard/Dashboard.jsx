@@ -1,4 +1,4 @@
-const Dashboard = () => {
+const DashBoard = () => {
     return ( 
         <main className="h-full ">
             dash
@@ -6,4 +6,4 @@ const Dashboard = () => {
      );
 }
  
-export default Dashboard;
+export default DashBoard;
