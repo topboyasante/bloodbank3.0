@@ -1,27 +1,14 @@
 import React from 'react'
-import axios from 'axios';
-import { useEffect } from 'react';
 import {IoMdAdd,IoIosSend} from 'react-icons/io'
 import { useSelector,useDispatch  } from 'react-redux'
 import { Link, Outlet } from 'react-router-dom'
 import SearchBar from '../../../components/Navigation/SearchBar'
 import DonorProfile from '../../../components/Cards/DonorProfile'
-import { donorActions } from '../../../redux/donorSlice';
 
 function AdminDonor() {
   const donorList = useSelector((state)=>state.donor.donors)
-  const dispatch = useDispatch()
 
-  const fetchDonorAPI = async ()=>{
-    const response = await axios.get(`https://localhost:7253/Donors`);
-    const data = response.data
-    console.log(data)
-    dispatch(donorActions.setDonors(data))
-  }
   
-  useEffect(() => {
-    fetchDonorAPI()
-  }, [])
   return (
     <div className='w-[84vw] mx-auto lg:mx-5 lg:h-[85vh] flex flex-col gap-[2em] lg:flex-row justify-between mt-[5em] lg:mt-0 p-2'>
 

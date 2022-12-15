@@ -1,9 +1,24 @@
 // import { Slider } from '@mui/material'
+import axios from 'axios';
+import { donorActions } from '../../../redux/donorSlice';
+import { useSelector,useDispatch  } from 'react-redux'
+import { useEffect } from 'react';
 import MapImg from '../../../Images/map.png'
-import { useSelector } from 'react-redux'
 
 function Dashboard() {
-  // const donorList = useSelector((state)=>state.donor.donors)
+  const donorList = useSelector((state)=>state.donor.donors)
+  const dispatch = useDispatch()
+  let bloodTypeAsText = ''
+  const fetchDonorAPI = async ()=>{
+    const response = await axios.get(`https://localhost:7253/Donors`);
+    const data = response.data
+    console.log(data)
+    dispatch(donorActions.setDonors(data))
+  }
+  
+  useEffect(() => {
+    fetchDonorAPI()
+  }, [])
   return (
     <div className='lg:w-[80vw] mx-5 h-[80vh] mt-[5em] lg:mt-0'>
       {/* Top */}
@@ -47,24 +62,51 @@ function Dashboard() {
           <h1>Recent Donors:</h1>
           <div className='border w-[90%] lg:w-[25vw] h-[55vh] overflow-y-scroll bg-white px-3 py-5 flex flex-col gap-5 shadow-md rounded-md'>
             {/* Donor List Shows Here. */}
-            {/* {donorList.map((item)=>{
+            {donorList.map((item)=>{
+               switch(item.bloodType){
+                case "OPositive":
+                  bloodTypeAsText = "O+"
+                 break;
+                case "APositive":
+                  bloodTypeAsText = "A+"
+                 break;
+                case "BPositive":
+                  bloodTypeAsText = "B+"
+                 break;
+                case "ABPositive":
+                  bloodTypeAsText = "AB+"
+                 break;
+                case "ABNegative":
+                  bloodTypeAsText = "AB-"
+                 break;
+                case "ANegative":
+                  bloodTypeAsText = "A-"
+                 break;
+                case "BNegative":
+                  bloodTypeAsText = "B_"
+                 break;
+                case "ONegative":
+                  bloodTypeAsText = "O-"
+                 break;
+                 
+               }
                   return(
                   <main className='rounded-md shadow px-2 py-3 flex justify-center items-center gap-[4em]'>
                     <div className='w-[20%]'>
-                    <img src={item.img} alt={item.name} className='w-[50px] h-[50px] rounded-full object-cover' /> 
+                    {/* <img src={item.img} alt={item.name} className='w-[50px] h-[50px] rounded-full object-cover' />  */}
                     </div>
             
                       <div className='w-[60%]'>
-                        <h1 className='font-[500] text-xl'>{item.name}</h1>
-                        <p className='text-gray-500'>{item.dob}</p>
+                        <h1 className='font-[500] text-xl'>{item.fullName}</h1>
+                        <p className='text-gray-500'>{item.dateofBirth}</p>
                       </div>
             
                       <div className='w-[15%]'>
-                        <p className='text-2xl uppercase'>{item.bGroup}</p>
+                        <p className='text-2xl uppercase'>{bloodTypeAsText}</p>
                       </div>
                   </main>
                   )
-                  })} */}
+                  })}
           </div>
         </section>
         {/* Maps */}
