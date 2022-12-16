@@ -79,11 +79,12 @@ const AdminLogin = () => {
           <br />
 
           {/* Buttons */}
-          <section className='text-white flex flex-col lg:flex-row gap-2 lg:gap-10'>
-              <button type="submit" className="bg-[#11BD17] w-[300px] lg:w-[164px] h-[39px] rounded-md">
+          <section className='text-white flex flex-col gap-2'>
+              <button type="submit" className="bg-[#11BD17] w-[300px] lg:w-[164px] h-[39px] rounded-md
+              hover:scale-105 ease duration-200">
                 <span className='text-base'>Login</span>
               </button>
-            
+              <h3 className='w-[90vw] lg:w-full text-center'><Link to = {'/blood-bank/forgot-password'} className="text-[#686667] cursor-pointer underline">Forgot Password?</Link></h3>
           </section>
 
             {/* Sign Up Link */}

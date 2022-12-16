@@ -5,6 +5,8 @@ import { useSelector,useDispatch  } from 'react-redux'
 import { useEffect } from 'react';
 import MapImg from '../../../Images/map.png'
 import { donationActions } from '../../../redux/donationsSlice';
+import isMaleImg from '../../../Images/isMale.png'
+import isFemaleImg from '../../../Images/isFemale.png'
 
 function Dashboard() {
   const donorList = useSelector((state)=>state.donor.donors)
@@ -100,7 +102,7 @@ function Dashboard() {
                   return(
                   <main className='rounded-md shadow px-2 py-3 flex justify-center items-center gap-[4em]' key={item.id}>
                     <div className='w-[20%]'>
-                    {/* <img src={item.img} alt={item.name} className='w-[50px] h-[50px] rounded-full object-cover' />  */}
+                    {item.gender === 'Male'? <img src={isMaleImg} alt="" /> : <img src={isFemaleImg} alt="" />}
                     </div>
             
                       <div className='w-[60%]'>

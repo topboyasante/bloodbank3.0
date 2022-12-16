@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import isMaleImg from '../../Images/isMale.png'
+import isFemaleImg from '../../Images/isFemale.png'
 
 function DonorProfile(props) {
  let bloodTypeAsText = ''
@@ -34,8 +36,9 @@ function DonorProfile(props) {
   return (
     <Link to={`${props.item.id}`}>
       <main className='rounded-md shadow px-2 py-3 flex justify-center items-center gap-[4em] cursor-pointer'>
-        <div className='w-[20%]'>
-        {/* <img src={props.item.img} alt={props.item.name} className='w-[50px] h-[50px] rounded-full object-cover' /> */}
+        <div className='w-[30%]'>
+        {props.item.gender === 'Male'? <img src={isMaleImg} alt="isMale" className='w-[50%]'/> 
+        : <img src={isFemaleImg} alt="isFemale" className='w-[50%]'/>}
         </div>
 
           <div className='w-[60%]'>

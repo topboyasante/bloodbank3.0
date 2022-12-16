@@ -23,6 +23,7 @@ import AdminDonations from './pages/Admin/App/AdminDonations'
 import AdminAddNewDonation from './pages/Admin/App/AdminAddNewDonation'
 import AdminSupply from './pages/Admin/App/AdminSupply'
 import DoesNotExist from './pages/Routing/DoesNotExist'
+import ForgotPassword from './pages/Admin/Authentication/ForgotPassword'
 
 function App() {
   const LoginState = useSelector((state)=>state.auth.isLoggedIn)
@@ -39,6 +40,7 @@ function App() {
           <Route path='/blood-bank'>
             <Route index element={<AdminLogin/>}/>
             <Route path='signup' element={<AdminSignUp/>}/>
+            <Route path='forgot-password' element={<ForgotPassword/>}/>
 
             {/* Blood Bank App Routes */}
             <Route path='app' element={<ProtectedRoutes isLoggedIn={LoginState}></ProtectedRoutes>}>
