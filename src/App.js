@@ -12,6 +12,7 @@ import AdminDonor from './pages/Admin/App/AdminDonor'
 import DonorProfileLg from './components/Cards/DonorProfileLg'
 import AdminAddDonor from './pages/Admin/App/AdminAddDonor'
 import AdminSendRequest from './pages/Admin/App/AdminSendRequest'
+import AdminSettings from './pages/Admin/App/AdminSettings'
 
 // Donor
 import DonorLogin from './pages/Donor/LoginSignUp/DonorLogin'
@@ -20,6 +21,7 @@ import DashBoard from './pages/Donor/Dashboard/DashBoard'
 import DonorProtectedRoutes from './pages/Routing/DonorProtectedRoutes'
 import AdminDonations from './pages/Admin/App/AdminDonations'
 import AdminAddNewDonation from './pages/Admin/App/AdminAddNewDonation'
+import AdminSupply from './pages/Admin/App/AdminSupply'
 
 function App() {
   const LoginState = useSelector((state)=>state.auth.isLoggedIn)
@@ -49,6 +51,8 @@ function App() {
                   <Route index element={<AdminDonations/>}/>
                   <Route path='add-new-donation' element={<AdminAddNewDonation/>}/>
                 </Route>
+                <Route path='supply' element={<AdminSupply/>}/>
+                <Route path='settings' element={<AdminSettings/>}/>
             </Route>
           </Route>
 

@@ -23,6 +23,13 @@ const AdminLogin = () => {
     .then((res) => {
       console.log(res.data)
       dispatch(authActions.login())
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Logged In!',
+        showConfirmButton: false,
+        timer: 1000
+      })
       navigate("/blood-bank/app/dashboard")
     })
     .catch((err) => {

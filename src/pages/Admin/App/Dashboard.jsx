@@ -98,7 +98,7 @@ function Dashboard() {
                  
                }
                   return(
-                  <main className='rounded-md shadow px-2 py-3 flex justify-center items-center gap-[4em]'>
+                  <main className='rounded-md shadow px-2 py-3 flex justify-center items-center gap-[4em]' key={item.id}>
                     <div className='w-[20%]'>
                     {/* <img src={item.img} alt={item.name} className='w-[50px] h-[50px] rounded-full object-cover' />  */}
                     </div>
