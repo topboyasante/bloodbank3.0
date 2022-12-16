@@ -21,10 +21,10 @@ function AdminSupply() {
             {/* <AdminTabs/> */}
             <nav className='flex justify-between items-center w-full p-2 shadow'>
               <NavLink onClick={()=>{setFilter('Incoming')}}
-              className={filter==='Incoming'?activeNav:'w-[45%] text-center hover:bg-gray-300 rounded-md p-3 ease duration-200'}>
+              className={filter==='Incoming'?activeNav:'w-[45%] text-center hover:bg-gray-50 rounded-md p-3 ease duration-200'}>
                 Incoming Supply</NavLink>
               <NavLink onClick={()=>{setFilter('Outgoing')}}
-              className={filter==='Outgoing'?activeNav:'w-[45%] text-center hover:bg-gray-300 rounded-md p-3 ease duration-200'}>
+              className={filter==='Outgoing'?activeNav:'w-[45%] text-center hover:bg-gray-50 rounded-md p-3 ease duration-200'}>
                 Outgoing Supply</NavLink>
             </nav>
           </div>
