@@ -8,7 +8,7 @@ function AdminSupply() {
   function handleSearch (e){
     setSearchKeyword(e.target.value)
   }
-  const activeNav = "bg-input-color p-2 rounded-md font-semibold duration-75";
+  const activeNav = "border-b-[3px] border-b-[#960000] ease duration-200 w-[45%] text-center p-3";
   return (
     <div className='lg:w-[80vw] mx-5 h-[85vh] mt-[5em] lg:mt-0'>
       <div className='my-2'>
@@ -21,9 +21,11 @@ function AdminSupply() {
             {/* <AdminTabs/> */}
             <nav className='flex justify-between items-center w-full p-2 shadow'>
               <NavLink onClick={()=>{setFilter('Incoming')}}
-              className={filter==='Incoming'?activeNav:''}>Incoming Supply</NavLink>
+              className={filter==='Incoming'?activeNav:'w-[45%] text-center hover:bg-gray-300 rounded-md p-3 ease duration-200'}>
+                Incoming Supply</NavLink>
               <NavLink onClick={()=>{setFilter('Outgoing')}}
-              className={filter==='Outgoing'?activeNav:''}>Outgoing Supply</NavLink>
+              className={filter==='Outgoing'?activeNav:'w-[45%] text-center hover:bg-gray-300 rounded-md p-3 ease duration-200'}>
+                Outgoing Supply</NavLink>
             </nav>
           </div>
           {/* Right */}
