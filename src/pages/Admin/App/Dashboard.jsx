@@ -67,7 +67,7 @@ function Dashboard() {
         {/* Recent Donors */}
         <section className='mb-5 lg:mb-0'>
           <h1>Recent Donors:</h1>
-          <div className='border w-[90%] lg:w-[25vw] h-[55vh] overflow-y-scroll bg-white px-3 py-5 flex flex-col gap-5 shadow-md rounded-md'>
+          <div className='border w-[85vw] lg:w-[25vw] h-[55vh] overflow-y-scroll bg-white px-3 py-5 flex flex-col gap-5 shadow-md rounded-md'>
             {/* Donor List Shows Here. */}
             {donorList.map((item)=>{
                switch(item.bloodType){

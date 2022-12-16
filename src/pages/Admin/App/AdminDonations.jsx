@@ -15,7 +15,7 @@ function AdminDonations() {
     setSearchKeyword(e.target.value)
   }
   return (
-    <div className='lg:w-[80vw] mx-5 h-[85vh] mt-[5em] lg:mt-0'>
+    <div className='w-screen lg:w-[80vw] mx-5 h-[85vh] mt-[5em] lg:mt-0'>
      
       {/* Buttons */}
       <div className='flex justify-between items-center flex-col lg:flex-row lg:gap-0 gap-5 mt-5 lg:mt-0'>
@@ -48,7 +48,7 @@ function AdminDonations() {
         </div>
       </div>
       {/* Table */}
-      <table className='w-[90vw] lg:w-full mt-5 table table-zebra'>
+      <table className='w-[70vw] lg:w-full mt-5 table table-zebra'>
         <thead>
           <tr>
             <th className=' bg-[#e4e4e4] text-black border-r border-r-white py-2 font-light text-center'>#</th>

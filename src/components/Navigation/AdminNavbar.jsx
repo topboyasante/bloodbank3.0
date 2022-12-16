@@ -57,14 +57,14 @@ function AdminNavbar() {
      </nav>
 
         {/* Nav For Small Screens */}
-    <nav className='lg:hidden bg-[#960000] w-full h-[8vh] flex items-center fixed top-0 left-0 z-10'>
+    <nav className='lg:hidden bg-[#960000] w-full h-[8vh] flex items-center fixed top-0 left-0 z-30'>
         <section className={nav?'w-[45vw] bg-[#ffffff] fixed top-0 left-0 h-[100vh] flex flex-col justify-center items-start ease duration-500 pl-5':'w-[80vw] bg-bbWhite absolute top-0 left-[-1000px] h-[100vh] flex flex-col justify-center ease duration-500'}>
             <img src={Logo} alt="/" className='w-[137px] h-[71px]'/>
             <br />
             <NavLink onClick={()=>{setNav(false)}} to='/blood-bank/app/dashboard' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <p className='font-light text-xl'>Dashboard</p>
             </NavLink>
-            <NavLink onClick={()=>{setNav(false)}} to='/blood-bank/app/admin/donor' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
+            <NavLink onClick={()=>{setNav(false)}} to='/blood-bank/app/donor/donors' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <p className='font-light text-xl'>Donor</p>
             </NavLink>
             <NavLink onClick={()=>{setNav(false)}} to='/blood-bank/app/donations' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
