@@ -22,6 +22,7 @@ import DonorProtectedRoutes from './pages/Routing/DonorProtectedRoutes'
 import AdminDonations from './pages/Admin/App/AdminDonations'
 import AdminAddNewDonation from './pages/Admin/App/AdminAddNewDonation'
 import AdminSupply from './pages/Admin/App/AdminSupply'
+import DoesNotExist from './pages/Routing/DoesNotExist'
 
 function App() {
   const LoginState = useSelector((state)=>state.auth.isLoggedIn)
@@ -31,6 +32,8 @@ function App() {
       <Routes>
           {/* Root Route */}
           <Route path='/' element={<Homepage/>}/>
+          {/* DNE Route */}
+          <Route path='*' element={<DoesNotExist/>}/>
 
           {/* Blood Bank Routes */}
           <Route path='/blood-bank'>

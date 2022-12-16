@@ -30,28 +30,28 @@ function AdminNavbar() {
         <img src={Logo} alt="/" className='w-[137px] h-[71px] mb-10'/>
         <section>
             <NavLink to='/blood-bank/app/dashboard' exact='true' className='flex items-center gap-2 mb-10 hover:bg-gray-50 p-3 ease duration-200' style={({ isActive }) =>isActive ? activeStyle : undefined}>
-                    <RiDashboardFill size={20}/>
+                    <RiDashboardFill size={25}/>
                     <p className='font-light text-md'>Dashboard</p>
             </NavLink>
             <NavLink to='/blood-bank/app/donor/donors' exact='true' className='flex items-center gap-2 mb-10 hover:bg-gray-50 p-3 ease duration-200' style={({ isActive }) =>isActive ? activeStyle : undefined}>
-                    <RiHeartLine size={20}/>
+                    <RiHeartLine size={25}/>
                     <p className='font-light text-md'>Donor</p>
             </NavLink>
             <NavLink to='/blood-bank/app/donations' exact='true' className='flex items-center gap-2 mb-10 hover:bg-gray-50 p-3 ease duration-200' style={({ isActive }) =>isActive ? activeStyle : undefined}>
-                    <FaRegIdCard size={20}/>
+                    <FaRegIdCard size={25}/>
                     <p className='font-light text-md'>Donations</p>
             </NavLink>
             <NavLink to='/blood-bank/app/supply' exact='true' className='flex items-center gap-2 mb-10 hover:bg-gray-50 p-3 ease duration-200' style={({ isActive }) =>isActive ? activeStyle : undefined}>
-                    <AiOutlineShoppingCart size={20}/>
+                    <AiOutlineShoppingCart size={25}/>
                     <p className='font-light text-md'>Supply</p>
             </NavLink>
             <NavLink to='/blood-bank/app/settings' exact='true' className='flex items-center gap-2 mb-10 hover:bg-gray-50 p-3 ease duration-200' style={({ isActive }) =>isActive ? activeStyle : undefined}>
-                    <RiSettings2Line size={20}/>
+                    <RiSettings2Line size={25}/>
                     <p className='font-light text-md'>Settings</p>
             </NavLink>
         </section>
         <button onClick={LogOut} className='flex items-center gap-2 bg-[#960000] justify-around p-2 rounded-md w-[120px]'>
-                <RiLogoutBoxLine size={20} color='#f1faee'/>
+                <RiLogoutBoxLine size={25} color='#f1faee'/>
                 <p className='text-[#f1faee]'>Log Out</p>
         </button>
      </nav>
@@ -62,28 +62,22 @@ function AdminNavbar() {
             <img src={Logo} alt="/" className='w-[137px] h-[71px]'/>
             <br />
             <NavLink onClick={()=>{setNav(false)}} to='/blood-bank/app/dashboard' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
-                    <RiDashboardFill size={20}/>
                     <p className='font-light text-xl'>Dashboard</p>
             </NavLink>
             <NavLink onClick={()=>{setNav(false)}} to='/blood-bank/app/admin/donor' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
-                    <RiHeartLine size={20}/>
                     <p className='font-light text-xl'>Donor</p>
             </NavLink>
             <NavLink onClick={()=>{setNav(false)}} to='/blood-bank/app/donations' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
-                    <FaRegIdCard size={20}/>
                     <p className='font-light text-xl'>Donations</p>
             </NavLink>
             <NavLink onClick={()=>{setNav(false)}} to='/blood-bank/app/supply' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
-                    <AiOutlineShoppingCart size={20}/>
                     <p className='font-light text-xl'>Supply</p>
             </NavLink>
             <NavLink onClick={()=>{setNav(false)}} to='/blood-bank/app/settings' exact='true' className='flex items-center gap-2 mb-10' style={({ isActive }) =>isActive ? activeStyle : undefined}>
-                    <RiSettings2Line size={20}/>
                     <p className='font-light text-xl'>Settings</p>
             </NavLink>
             <br />
             <button onClick={LogOut} className='flex items-center gap-2 bg-[#960000] justify-around p-2 rounded-md w-[120px]'>
-                <RiLogoutBoxLine size={20} color='#f1faee'/>
                 <p className='text-[#f1faee]'>Log Out</p>
         </button>
         </section>
