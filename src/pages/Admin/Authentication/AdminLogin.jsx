@@ -6,13 +6,14 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../../redux/authSlice';
+import {AiOutlineEyeInvisible,AiOutlineEye} from 'react-icons/ai'
 
 const AdminLogin = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [userName,setUserName] = useState('')
   const [password,setPassword] = useState('')
-
+  const [canSeePassword,setCanSeePassword] = useState(false)
   const handleSubmit = async (event) => {
     event.preventDefault()
     
@@ -42,6 +43,9 @@ const AdminLogin = () => {
       })
     })
   }
+  function handleCanSeePassword(){
+    setCanSeePassword(!canSeePassword)
+  }
   return ( 
     <main className='flex items-center w-[100vw] h-[100vh] justify-between'>
       <img src= {MainImage} alt="" className="hidden lg:flex w-[45%] h-full"/>
@@ -56,16 +60,20 @@ const AdminLogin = () => {
             <label className='font-normal text-sm'>Username</label>
             <br />
             <input 
-            value={userName} onChange={(event) => setUserName(event.target.value)}
-            type="text" className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2 focus:border-black' required/>
+            type="text" value={userName} onChange={(event) => setUserName(event.target.value)}
+            className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2 focus:border-black' required/>
           </div>
 
           <div className='mb-3'>
             <label className='font-normal text-sm'>Password</label>
             <br />
-            <input 
-             value={password} onChange={(event) => setPassword(event.target.value)}
-            type="password" className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2 focus:border-black' required/>
+            <section className='password flex items-center border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2 focus:border-blac'>
+              <input 
+              value={password} onChange={(event) => setPassword(event.target.value)}
+              type={canSeePassword ? "text" : "password"} className='w-[95%] outline-none' required/>
+                {canSeePassword? <AiOutlineEyeInvisible onClick={handleCanSeePassword} className='cursor-pointer ease duration-200' size={20}/> 
+                : <AiOutlineEye onClick={handleCanSeePassword} className='cursor-pointer ease duration-200' size={20}/>}
+              </section>
           </div>
 
           <br />
