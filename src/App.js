@@ -51,7 +51,10 @@ function App() {
                   <Route index element={<AdminDonations/>}/>
                   <Route path='add-new-donation' element={<AdminAddNewDonation/>}/>
                 </Route>
-                <Route path='supply' element={<AdminSupply/>}/>
+                <Route path='supply'>
+                  <Route index element={<AdminSupply/>}/>
+                  <Route path='request-supply' element={<AdminSendRequest/>}/>
+                </Route>
                 <Route path='settings' element={<AdminSettings/>}/>
             </Route>
           </Route>
