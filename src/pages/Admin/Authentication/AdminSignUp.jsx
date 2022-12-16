@@ -140,7 +140,7 @@ const AdminSignUp = () => {
               required/>
           </div>
 
-          <div className='mb-3'>
+          <div className='mb-3 hidden lg:grid'>
               <label className='font-normal text-sm hidden'>Location</label>
               <br />
               <div className='shadow rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2 focus:border-black'/>
