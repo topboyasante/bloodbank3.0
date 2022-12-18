@@ -71,7 +71,7 @@ function App() {
             <Route path="donor-signup" element={<DonorSignUp />} />
 
             {/* dashboard routes */}
-            <Route path = 'dashboard/*' element = {<DonorProtectedRoutes isLoggedIn={LoginState}></DonorProtectedRoutes>} />
+            <Route path = 'dashboard' element = {<DonorProtectedRoutes isLoggedIn={LoginState} isNotLoggedInUrl={'/donor/donor-login'}></DonorProtectedRoutes>} />
             <Route index element={<DashBoard/>} />
            </Route>
       </Routes>
