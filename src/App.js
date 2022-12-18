@@ -12,26 +12,35 @@ import AdminDonor from './pages/Admin/App/AdminDonor'
 import DonorProfileLg from './components/Cards/DonorProfileLg'
 import AdminAddDonor from './pages/Admin/App/AdminAddDonor'
 import AdminSendRequest from './pages/Admin/App/AdminSendRequest'
+import AdminSettings from './pages/Admin/App/AdminSettings'
 
 // Donor
 import DonorLogin from './pages/Donor/LoginSignUp/DonorLogin'
 import DonorSignUp from './pages/Donor/LoginSignUp/DonorSignUp'
 import DonorProtectedRoutes from './pages/Routing/DonorProtectedRoutes'
+import AdminDonations from './pages/Admin/App/AdminDonations'
+import AdminAddNewDonation from './pages/Admin/App/AdminAddNewDonation'
+import AdminSupply from './pages/Admin/App/AdminSupply'
+import DoesNotExist from './pages/Routing/DoesNotExist'
+import ForgotPassword from './pages/Admin/Authentication/ForgotPassword'
 
 function App() {
   const LoginState = useSelector((state)=>state.auth.isLoggedIn)
 
 
   return (
-    <main>
+      <main>
       <Routes>
           {/* Root Route */}
           <Route path='/' element={<Homepage/>}/>
+          {/* DNE Route */}
+          <Route path='*' element={<DoesNotExist/>}/>
 
           {/* Blood Bank Routes */}
           <Route path='/blood-bank'>
             <Route index element={<AdminLogin/>}/>
             <Route path='signup' element={<AdminSignUp/>}/>
+            <Route path='forgot-password' element={<ForgotPassword/>}/>
 
             {/* Blood Bank App Routes */}
             <Route path='app' element={<ProtectedRoutes isLoggedIn={LoginState}></ProtectedRoutes>}>
@@ -43,6 +52,15 @@ function App() {
                   <Route path='/blood-bank/app/donor/add-donor' element={<AdminAddDonor/>}/>
                   <Route path='/blood-bank/app/donor/send-request' element={<AdminSendRequest/>}/>
                 </Route>
+                <Route path='donations'>
+                  <Route index element={<AdminDonations/>}/>
+                  <Route path='add-new-donation' element={<AdminAddNewDonation/>}/>
+                </Route>
+                <Route path='supply'>
+                  <Route index element={<AdminSupply/>}/>
+                  <Route path='request-supply' element={<AdminSendRequest/>}/>
+                </Route>
+                <Route path='settings' element={<AdminSettings/>}/>
             </Route>
           </Route>
 
@@ -57,7 +75,7 @@ function App() {
             {/* <Route  element={<DashBoard/>} /> */}
            </Route>
       </Routes>
-    </main>
+      </main>
   )
 }
 

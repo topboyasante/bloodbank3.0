@@ -1,36 +1,43 @@
-import React from 'react'
-import axios from 'axios';
-import { useEffect } from 'react';
+import React, { useState } from 'react'
 import {IoMdAdd,IoIosSend} from 'react-icons/io'
 import { useSelector,useDispatch  } from 'react-redux'
 import { Link, Outlet } from 'react-router-dom'
-import SearchBar from '../../../components/Navigation/SearchBar'
 import DonorProfile from '../../../components/Cards/DonorProfile'
+import SearchBar from '../../../components/Navigation/SearchBar'
 
 function AdminDonor() {
-  const dispatch = useDispatch()
-
-  const fetchDonorAPI = async ()=>{
-    const response = await axios.get(`https://localhost:7253/Donors`);
-    const data = response.data
-    console.log(data)
-    // dispatch(donorActions.setDonors(data))
+  const donorList = useSelector((state)=>state.donor.donors)
+  const [searchKeyword,setSearchKeyword] = useState('')
+  function handleSearch (e){
+    setSearchKeyword(e.target.value)
   }
-  
-  useEffect(() => {
-    fetchDonorAPI()
-  }, [])
   return (
     <div className='w-[84vw] mx-auto lg:mx-5 lg:h-[85vh] flex flex-col gap-[2em] lg:flex-row justify-between mt-[5em] lg:mt-0 p-2'>
 
       {/* Left */}
       <section className='mt-5 lg:mt-0 lg:w-[45%]'>
-        <SearchBar/>
+        <SearchBar searchText={searchKeyword} handleSearchText={handleSearch}/>
         {/* Scroll Section */}
         <section className='mt-3'>
           <h1>Recent Donors:</h1>
           <div className='border h-[75vh] overflow-y-scroll bg-white px-2 py-5 flex flex-col gap-5 shadow-md rounded-md'>
             {/* Donor List Shows Here. */}
+            {
+              searchKeyword !== '' ? donorList.filter((item)=>item.fullName.toLowerCase().includes(searchKeyword.toLowerCase())).map((item)=>{
+                return(
+                  <DonorProfile
+                  key={item.id}
+                  item={item}/>
+                )
+              }):
+              donorList.map((item)=>{
+                return(
+                  <DonorProfile
+                  key={item.id}
+                  item={item}/>
+                )
+              })
+            }
           </div>
         </section>
       </section>

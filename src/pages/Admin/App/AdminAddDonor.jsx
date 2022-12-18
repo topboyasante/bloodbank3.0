@@ -3,15 +3,15 @@ import { useSelector,useDispatch  } from 'react-redux'
 import React, { useState,useContext, useEffect, Fragment } from 'react'
 import {useNavigate,Link} from 'react-router-dom'
 import { Dialog, Transition } from '@headlessui/react'
-// import { donorActions } from '../../redux/donorSlice'
+import { donorActions } from '../../../redux/donorSlice'
 // import { AppContext } from '../../context/AppContext'
 import axios from 'axios';
 import Swal from 'sweetalert2'
 
 function AdminAddDonor() {
   // const {isOpen, setIsOpen} = useContext(AppContext)
-  // const dispatch = useDispatch()
-  // const donorList = useSelector((state)=>state.donor.donors)
+  const dispatch = useDispatch()
+  const donorList = useSelector((state)=>state.donor.donors)
   const navigate = useNavigate();
   // function closeModal() {
   //   setIsOpen(false)
@@ -77,42 +77,62 @@ function AdminAddDonor() {
     setPhoneNumber('')
   }
 
-  // const handleSubmit =  async (event) => {
-  //   event.preventDefault()
-  //   const newDonorInfo={
-  //     id:donorList.length+1 ,
-  //     // img:image,
-  //     fullName:fullName,
-  //     dateofBirth:dob,
-  //     email:email,
-  //     age:age,
-  //     gender:gender,
-  //     location:location,
-  //     bloodType:bGroup,
-  //     // lastDonation:lastDonation
-  //   }
-  //   if(fullName !=='' && email !=='' && dob !=='' && gender !=='' && age!=='' 
-  //   && location !=='' &&bGroup !==''  ){
-  //     dispatch(donorActions.addDonor(newDonorInfo))
-  //     axios.post('https://localhost:7253/Donors',newDonorInfo)
-  //     .then((res)=>{
-  //       console.log(res)
-  //     }
-  //     ).catch((err)=>{
-  //       console.log(err)
-  //     })
-  //     resetForm()
-  //   }
-  //   else{
-  //     Swal.fire({
-  //       title: 'Error!',
-  //       text: 'The Form is Incomplete or has Wrong Data.',
-  //       icon: 'error',
-  //       confirmButtonText: 'Back',
-  //       confirmButtonColor:'#960000'
-  //     })
-  //   }
-  // }
+  const handleSubmit =  async (event) => {
+    event.preventDefault()
+    const newDonorInfo={
+      id:donorList.length+1 ,
+      // img:image,
+      fullName:fullName,
+      dateofBirth:dob,
+      email:email,
+      age:age,
+      gender:gender,
+      location:location,
+      bloodType:bGroup,
+      // lastDonation:lastDonation
+    }
+    if(fullName !=='' && email !=='' && dob !=='' && gender !=='' && age!=='' 
+    && location !=='' &&bGroup !==''  ){
+      dispatch(donorActions.addDonor(newDonorInfo))
+      await axios.post('https://localhost:7253/Donors',{
+        id:donorList.length+1 ,
+        fullName:fullName,
+        dateofBirth:dob,
+        email:email,
+        age:age,
+        gender:gender,
+        location:location,
+        bloodType:bGroup,
+      }).then((res)=>{
+        Swal.fire({
+          title: 'Success!',
+          text: 'The New Donor Was Added.',
+          icon: 'success',
+          timer: 1500,
+          showConfirmButton:false
+        })
+        navigate('/blood-bank/app/donor/donors')
+      }).catch((err)=>{
+        Swal.fire({
+          title: 'Error!',
+          text: 'The Was A Problem.',
+          icon: 'error',
+          confirmButtonText: 'Back',
+          confirmButtonColor:'#960000'
+        })
+      })
+      resetForm()
+    }
+    else{
+      Swal.fire({
+        title: 'Error!',
+        text: 'The Form is Incomplete or has Wrong Data.',
+        icon: 'error',
+        confirmButtonText: 'Back',
+        confirmButtonColor:'#960000'
+      })
+    }
+  }
   
   return (
     <main className=''>
@@ -181,14 +201,14 @@ function AdminAddDonor() {
                 <select name="blood-type" id="blood-type" className='border rounded-md w-[100%] p-2' value={bGroup} onChange={handleBGroup}>
                 <optgroup>
                         <option value=""></option>
-                        <option value="O+">O+</option>
-                        <option value="O-">O-</option>
-                        <option value="A-">A-</option>
-                        <option value="A+">A+</option>
-                        <option value="B-">B-</option>
-                        <option value="B+">B+</option>
-                        <option value="AB-">AB-</option>
-                        <option value="AB+">B+</option>
+                        <option value="OPositive">O+</option>
+                        <option value="ONegative">O-</option>
+                        <option value="ANegative">A-</option>
+                        <option value="APositive">A+</option>
+                        <option value="BNegative">B-</option>
+                        <option value="BPositive">B+</option>
+                        <option value="ABNegative">AB-</option>
+                        <option value="ABPositive">AB+</option>
                     </optgroup>
                 </select>
         </div>
@@ -206,7 +226,7 @@ function AdminAddDonor() {
             <input type="file" className='border w-[100%] p-2 rounded-md' value={image} onChange={handleImage}/>
           </div>
         </section> */}
-        <Link exact='true' to='/bank/app/admin/donor'>
+        <Link exact='true' to='/bank/app/admin/donor'  onClick={handleSubmit}>
         <button className='bg-[#960000] text-white w-[100%] p-2 rounded-lg my-2'>Add Donor</button>
         </Link>
     </form>

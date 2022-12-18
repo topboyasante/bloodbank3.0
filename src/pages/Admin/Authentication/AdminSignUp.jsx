@@ -4,6 +4,7 @@ import MainImage from '../../../Images/loginImg.png';
 import Bladie from '../../../Images/BBLogo.png';
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import {AiOutlineEyeInvisible,AiOutlineEye} from 'react-icons/ai'
 
 const AdminSignUp = () => {
   // Input State:
@@ -14,7 +15,7 @@ const AdminSignUp = () => {
   const [location,setLocation] = useState('')
   const [password,setPassword] = useState('')
   const [confirmPassword,setConfirmPassword] = useState('')
-
+  const [canSeePassword,setCanSeePassword] = useState(false)
   const navigate = useNavigate()
   const handleSubmit =async (event)=>{
     event.preventDefault()
@@ -47,6 +48,9 @@ const AdminSignUp = () => {
       })
     })
   }
+  function handleCanSeePassword(){
+    setCanSeePassword(!canSeePassword)
+  }
   return (
     <main className='flex items-center w-[100vw] h-[100vh] justify-between'>
       {/* Image */}
@@ -63,7 +67,7 @@ const AdminSignUp = () => {
           <div className='mb-3'>
               <label className='font-normal text-sm'>Hospital Name</label>
               <br />
-              <input type="text" className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black' 
+              <input type="text" className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2 focus:border-black' 
                       name="hospitalName" 
                       value={hospitalName} 
                       onChange={(e)=>{setHospitalName(e.target.value)}}
@@ -73,7 +77,7 @@ const AdminSignUp = () => {
           <div className='mb-3'>
               <label className='font-normal text-sm'>Username</label>
               <br />
-              <input type="text" className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black' 
+              <input type="text" className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2 focus:border-black' 
               name="userName" 
               value={userName} 
               onChange={(e)=>{setUserName(e.target.value)}}
@@ -83,7 +87,7 @@ const AdminSignUp = () => {
           <div className='mb-3'>
               <label className='font-normal text-sm'>Email Address</label>
               <br />
-              <input type="email" className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black' 
+              <input type="email" className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2 focus:border-black' 
               name="email" 
               value={email} 
               onChange={(e)=>{setEmail(e.target.value)}}
@@ -93,43 +97,54 @@ const AdminSignUp = () => {
           <div className='mb-3'>
               <label className='font-normal text-sm'>Phone Number</label>
               <br />
-              <input type="text" className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black' 
+              <input type="text" className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2 focus:border-black' 
                name="phoneNumber" 
                value={phoneNumber} 
                onChange={(e)=>{setPhoneNumber(e.target.value)}}
                required/>
           </div>
 
+         
+
+          <div className='mb-3'>
+              <label className='font-normal text-sm'>Password</label>
+              <br />
+              <section className='password flex items-center border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2 focus:border-blac'>
+              <input 
+              value={password} onChange={(event) => setPassword(event.target.value)}
+              type={canSeePassword ? "text" : "password"} className='w-[95%] outline-none' required/>
+                {canSeePassword? <AiOutlineEyeInvisible onClick={handleCanSeePassword} className='cursor-pointer ease duration-200' size={20}/> 
+                : <AiOutlineEye onClick={handleCanSeePassword} className='cursor-pointer ease duration-200' size={20}/>}
+              </section>
+          </div>
+
+          <div className='mb-3'>
+              <label className='font-normal text-sm'>Confirm Password</label>
+              <br />
+              <section className='password flex items-center border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2 focus:border-blac'>
+              <input 
+              value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)}
+              type={canSeePassword ? "text" : "password"} className='w-[95%] outline-none' required/>
+                {canSeePassword? <AiOutlineEyeInvisible onClick={handleCanSeePassword} className='cursor-pointer ease duration-200' size={20}/> 
+                : <AiOutlineEye onClick={handleCanSeePassword} className='cursor-pointer ease duration-200' size={20}/>}
+              </section>
+          </div>
+             
           <div className='mb-3'>
               <label className='font-normal text-sm'>Location</label>
               <br />
-              <input type="text" className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black' 
+              <input type="text" className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2 focus:border-black' 
               name="location" 
               value={location} 
               onChange={(e)=>{setLocation(e.target.value)}}
               required/>
           </div>
 
-          <div className='mb-3'>
-              <label className='font-normal text-sm'>Password</label>
+          <div className='mb-3 hidden lg:grid'>
+              <label className='font-normal text-sm hidden'>Location</label>
               <br />
-              <input type="password" className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black' 
-              name="password" 
-              value={password} 
-              onChange={(e)=>{setPassword(e.target.value)}}
-              required/>
+              <div className='shadow rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2 focus:border-black'/>
           </div>
-
-          <div className='mb-3'>
-              <label className='font-normal text-sm'>Confirm Password</label>
-              <br />
-              <input type="password" className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black' 
-              name="confirmPassword" 
-              value={confirmPassword} 
-              onChange={(e)=>{setConfirmPassword(e.target.value)}}
-              required/>
-          </div>
-             
         </form>
         
         <button className="bg-[#11BD17] w-[300px] lg:w-[164px] h-[39px] rounded-md mt-5" onClick={handleSubmit}>

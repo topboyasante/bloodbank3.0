@@ -2,7 +2,7 @@ import React,{Fragment,useState} from 'react'
 import { Link } from 'react-router-dom'
 import { Dialog } from '@headlessui/react'
 import Logo from '../../Images/BBLogo.png'
-import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
+import {AiOutlineClose} from 'react-icons/ai'
 import {FaInstagram,FaFacebook,FaTwitter,FaWhatsapp,FaDiscord,FaEnvelope,FaHospitalSymbol} from 'react-icons/fa'
 import {FiArrowDown} from 'react-icons/fi'
 import {BsPerson} from 'react-icons/bs'
@@ -335,7 +335,7 @@ function Homepage() {
                 </Menu.Item>
               </Link>
 
-             <Link to='bank/signup'>
+             <Link to='blood-bank/signup'>
                 <Menu.Item>
                     {({ active }) => (
                       <button

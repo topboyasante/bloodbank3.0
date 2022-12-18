@@ -6,13 +6,14 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../../redux/authSlice';
+import {AiOutlineEyeInvisible,AiOutlineEye} from 'react-icons/ai'
 
 const AdminLogin = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [userName,setUserName] = useState('')
   const [password,setPassword] = useState('')
-
+  const [canSeePassword,setCanSeePassword] = useState(false)
   const handleSubmit = async (event) => {
     event.preventDefault()
     
@@ -23,6 +24,13 @@ const AdminLogin = () => {
     .then((res) => {
       console.log(res.data)
       dispatch(authActions.login())
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Logged In!',
+        showConfirmButton: false,
+        timer: 1000
+      })
       navigate("/blood-bank/app/dashboard")
     })
     .catch((err) => {
@@ -34,6 +42,9 @@ const AdminLogin = () => {
         confirmButtonColor:'#960000'
       })
     })
+  }
+  function handleCanSeePassword(){
+    setCanSeePassword(!canSeePassword)
   }
   return ( 
     <main className='flex items-center w-[100vw] h-[100vh] justify-between'>
@@ -49,26 +60,31 @@ const AdminLogin = () => {
             <label className='font-normal text-sm'>Username</label>
             <br />
             <input 
-            value={userName} onChange={(event) => setUserName(event.target.value)}
-            type="text" className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2 focus:border-black' required/>
+            type="text" value={userName} onChange={(event) => setUserName(event.target.value)}
+            className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2 focus:border-black' required/>
           </div>
 
           <div className='mb-3'>
             <label className='font-normal text-sm'>Password</label>
             <br />
-            <input 
-             value={password} onChange={(event) => setPassword(event.target.value)}
-            type="password" className='outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2 focus:border-black' required/>
+            <section className='password flex items-center border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2 focus:border-blac'>
+              <input 
+              value={password} onChange={(event) => setPassword(event.target.value)}
+              type={canSeePassword ? "text" : "password"} className='w-[95%] outline-none' required/>
+                {canSeePassword? <AiOutlineEyeInvisible onClick={handleCanSeePassword} className='cursor-pointer ease duration-200' size={20}/> 
+                : <AiOutlineEye onClick={handleCanSeePassword} className='cursor-pointer ease duration-200' size={20}/>}
+              </section>
           </div>
 
           <br />
 
           {/* Buttons */}
-          <section className='text-white flex flex-col lg:flex-row gap-2 lg:gap-10'>
-              <button type="submit" className="bg-[#11BD17] w-[300px] lg:w-[164px] h-[39px] rounded-md">
+          <section className='text-white flex flex-col gap-2'>
+              <button type="submit" className="bg-[#11BD17] w-[300px] lg:w-[164px] h-[39px] rounded-md
+              hover:scale-105 ease duration-200">
                 <span className='text-base'>Login</span>
               </button>
-            
+              <h3 className='w-[90vw] lg:w-full text-center'><Link to = {'/blood-bank/forgot-password'} className="text-[#686667] cursor-pointer underline">Forgot Password?</Link></h3>
           </section>
 
             {/* Sign Up Link */}

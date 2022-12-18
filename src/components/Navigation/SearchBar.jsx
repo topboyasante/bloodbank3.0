@@ -1,6 +1,6 @@
 import React from 'react'
 import {BsSearch} from 'react-icons/bs'
-function SearchBar() {
+function SearchBar({searchText,handleSearchText}) {
   return (
     <form className="max-w-sm px-4">
     <div className="relative">
@@ -21,6 +21,8 @@ function SearchBar() {
         <input
             type="text"
             placeholder="Search"
+            value={searchText}
+            onChange={handleSearchText}
             className="w-full py-1 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-gray-600"
         />
     </div>
