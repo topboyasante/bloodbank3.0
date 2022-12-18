@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MainImage from "../../../Images/loginImg.png";
 import Bladie from "../../../Images/BBLogo.png";
-import { useState } from "react";
+import { useState  } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { addDays } from "date-fns";
 import axios from "axios"
+import Swal from 'sweetalert2'
 
 const DonorSignUp = () => {
   const [fullName, setFullName] = useState("");
@@ -18,6 +19,9 @@ const DonorSignUp = () => {
   const [conPassword, setConPassword] = useState("");
   const [bloodGroup, setBloodGroup] = useState("");
   const [weight, setWeight] = useState()
+
+
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,10 +40,24 @@ const DonorSignUp = () => {
 
     await axios.post('https://localhost:7253/Accounts/register',  data)
     .then(response =>{
-        console.log(response, "done")
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Donor Successfully Created',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          navigate("/donor/dashboard")
     })
     .catch(err => {
-         console.log(err)
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Error',
+            showConfirmButton: false,
+            timer: 1500
+          })
+         
     })
   };
 
@@ -222,9 +240,9 @@ const DonorSignUp = () => {
 
           <button
             type="submit"
-            className="bg-[#11BD17] w-[300px] lg:w-[164px] h-[39px] rounded-md mt-5"
+            className="btn btn-md bg-[#11BD17] w-[300px] lg:w-[164px] h-[39px] rounded-md mt-5 border-none"
           >
-            <span className="text-base text-white">Sign Up</span>
+            <span className="text-base text-white capitalize font-medium">Sign Up</span>
           </button>
         </form>
 

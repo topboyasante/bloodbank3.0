@@ -5,6 +5,8 @@ import { useState } from 'react';
 import {useNavigate} from "react-router-dom"
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../../redux/authSlice';
+import axios from "axios";
+import Swal from 'sweetalert2'
 
 function DonorLogin() {
 
@@ -14,11 +16,42 @@ function DonorLogin() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault()
     // navigate('/donor/dashboard/appointments')
-    dispatch(authActions.login())
-    navigate('/donor/dashboard')
+
+    const data = {
+      email : email,
+      password : password
+    }
+
+    await axios.post('https://localhost:7253/Accounts/login', data)
+    .then(response => {
+      // console.log(response)
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: `Welcome Back ${email}`,
+        showConfirmButton: false,
+        timer: 1500
+      })
+      dispatch(authActions.login())
+      navigate('/donor/dashboard/appointments')
+    })
+    .catch(err => {
+      console.log(err)
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Error',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+
+
+
+   
 
   }
 

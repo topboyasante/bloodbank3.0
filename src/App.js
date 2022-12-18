@@ -16,13 +16,12 @@ import AdminSendRequest from './pages/Admin/App/AdminSendRequest'
 // Donor
 import DonorLogin from './pages/Donor/LoginSignUp/DonorLogin'
 import DonorSignUp from './pages/Donor/LoginSignUp/DonorSignUp'
-import DashBoard from './pages/Donor/Dashboard/DashBoard'
 import DonorProtectedRoutes from './pages/Routing/DonorProtectedRoutes'
 
 function App() {
   const LoginState = useSelector((state)=>state.auth.isLoggedIn)
 
-  // const [userlogin, setUserlogin] = useState(false)
+
   return (
     <main>
       <Routes>
@@ -54,8 +53,8 @@ function App() {
             <Route path="donor-signup" element={<DonorSignUp />} />
 
             {/* dashboard routes */}
-            <Route path = 'dashboard' element = {<DonorProtectedRoutes isLoggedIn={LoginState} isNotLoggedInUrl={'/donor/donor-login'}></DonorProtectedRoutes>} />
-            <Route index element={<DashBoard/>} />
+            <Route path = 'dashboard/*' element = {<DonorProtectedRoutes isLoggedIn={LoginState}></DonorProtectedRoutes>} />
+            {/* <Route  element={<DashBoard/>} /> */}
            </Route>
       </Routes>
     </main>
