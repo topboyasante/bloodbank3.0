@@ -26,7 +26,7 @@ import DoesNotExist from './pages/Routing/DoesNotExist'
 import ForgotPassword from './pages/Admin/Authentication/ForgotPassword'
 
 function App() {
-  const LoginState = useSelector((state)=>state.auth.user.isLoggedIn)
+  const LoginState = useSelector((state)=>state.auth.isLoggedIn)
 
   return (
       <main>
@@ -71,7 +71,7 @@ function App() {
             <Route path="donor-signup" element={<DonorSignUp />} />
 
             {/* dashboard routes */}
-            <Route path = 'dashboard/*' element = {<DonorProtectedRoutes isLoggedIn={LoginState}></DonorProtectedRoutes>} />
+            <Route path = 'dashboard' element = {<DonorProtectedRoutes isLoggedIn={LoginState} isNotLoggedInUrl={'/donor/donor-login'}></DonorProtectedRoutes>} />
             <Route index element={<DashBoard/>} />
            </Route>
       </Routes>

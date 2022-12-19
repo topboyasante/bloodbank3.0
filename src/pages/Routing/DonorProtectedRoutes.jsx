@@ -1,19 +1,9 @@
-import React from 'react'
-import { Outlet, Navigate } from 'react-router-dom'
-// import AdminNavbar from '../../components/Navigation/AdminNavbar'
-// import TopNavbar from '../../components/Navigation/TopNavbar'
+import React from "react";
+import { Navigate } from "react-router-dom";
+import DashBoard from "../Donor/Dashboard/DashBoard";
 
-function DonorProtectedRoutes({isLoggedIn}) {
-  return (
-    isLoggedIn? <main className='flex'>
-        {/* <AdminNavbar/> */}
-        <section className='w-full'>
-            <h1>dashboard</h1>
-            {/* <TopNavbar/> */}
-            {/* <Outlet/> */}
-        </section>
-    </main> : <Navigate to='/donor/donor-login'/>
-  )
+function DonorProtectedRoutes({ isLoggedIn }) {
+  return isLoggedIn ? <DashBoard /> : <Navigate to="/donor/donor-login" />;
 }
 
-export default DonorProtectedRoutes
+export default DonorProtectedRoutes;
