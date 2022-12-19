@@ -17,7 +17,7 @@ import AdminSettings from './pages/Admin/App/AdminSettings'
 // Donor
 import DonorLogin from './pages/Donor/LoginSignUp/DonorLogin'
 import DonorSignUp from './pages/Donor/LoginSignUp/DonorSignUp'
-import DashBoard from './pages/Donor/Dashboard/DashBoard'
+import DashBoard from './pages/Donor/Dashboard/Dashboard'
 import DonorProtectedRoutes from './pages/Routing/DonorProtectedRoutes'
 import AdminDonations from './pages/Admin/App/AdminDonations'
 import AdminAddNewDonation from './pages/Admin/App/AdminAddNewDonation'
