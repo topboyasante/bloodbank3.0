@@ -22,7 +22,9 @@ const AdminLogin = () => {
       password:password
     })
     .then((res) => {
-      console.log(res.data)
+      let user = res
+      localStorage.setItem('loginToken',JSON.stringify(user))
+      console.log(user)
       dispatch(authActions.login())
       Swal.fire({
         position: 'top-end',

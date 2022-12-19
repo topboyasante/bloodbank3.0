@@ -26,7 +26,7 @@ import DoesNotExist from './pages/Routing/DoesNotExist'
 import ForgotPassword from './pages/Admin/Authentication/ForgotPassword'
 
 function App() {
-  const LoginState = useSelector((state)=>state.auth.isLoggedIn)
+  const LoginState = useSelector((state)=>state.auth.user.isLoggedIn)
 
   return (
       <main>
