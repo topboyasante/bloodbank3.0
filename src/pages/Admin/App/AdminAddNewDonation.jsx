@@ -9,6 +9,8 @@ import { donationActions } from '../../../redux/donationsSlice'
 function AdminAddNewDonation() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const JWT_TOKEN = useSelector((state)=>state.auth.user.JWT)
+    const headers = { authorization: `Bearer ${JWT_TOKEN}`}
     const donationsList = useSelector((state)=>state.donations.donations)
     const donorList = useSelector((state)=>state.donor.donors)
     const [isForStorage,setIsForStorage] = useState(false)
@@ -77,7 +79,7 @@ function AdminAddNewDonation() {
               quantity:qty,
               dateofDonation:date,
               recipientName:recipient
-            }).then(()=>{
+            },{headers}).then(()=>{
               Swal.fire({
                 title: 'Success!',
                 text: 'The New Donation Was Added.',

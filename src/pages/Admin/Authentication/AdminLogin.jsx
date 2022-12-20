@@ -4,7 +4,7 @@ import Bladie from '../../../Images/BBLogo.png';
 import { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authActions } from '../../../redux/authSlice';
 import {AiOutlineEyeInvisible,AiOutlineEye} from 'react-icons/ai'
 
@@ -14,18 +14,18 @@ const AdminLogin = () => {
   const [userName,setUserName] = useState('')
   const [password,setPassword] = useState('')
   const [canSeePassword,setCanSeePassword] = useState(false)
+  const userJWT = useSelector((state)=>state.auth.user.JWT)
+
   const handleSubmit = async (event) => {
     event.preventDefault()
-    
     await axios.post('https://localhost:7253/Accounts/login', {
       userName: userName,
       password:password
-    })
+  })
     .then((res) => {
-      let user = res
-      localStorage.setItem('loginToken',JSON.stringify(user))
-      console.log(user)
       dispatch(authActions.login())
+      dispatch(authActions.setJWT(res.data))
+      localStorage.setItem('loginToken',JSON.stringify(res.data))
       Swal.fire({
         position: 'top-end',
         icon: 'success',

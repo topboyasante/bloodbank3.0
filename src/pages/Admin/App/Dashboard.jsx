@@ -2,32 +2,43 @@
 import axios from 'axios';
 import { donorActions } from '../../../redux/donorSlice';
 import { useSelector,useDispatch  } from 'react-redux'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import MapImg from '../../../Images/map.png'
 import { donationActions } from '../../../redux/donationsSlice';
 import isMaleImg from '../../../Images/isMale.png'
 import isFemaleImg from '../../../Images/isFemale.png'
 
 function Dashboard() {
-  const donorList = useSelector((state)=>state.donor.donors)
+  // const donorList = useSelector((state)=>state.donor.donors)
+  const JWT_TOKEN = useSelector((state)=>state.auth.user.JWT)
+  const headers = { authorization: `Bearer ${JWT_TOKEN}`}
   const dispatch = useDispatch()
   let bloodTypeAsText = ''
-  const fetchDonorAPI = async ()=>{
-    const response = await axios.get(`https://localhost:7253/Donors`);
-    const data = response.data
-    dispatch(donorActions.setDonors(data))
-  }
 
-  const fetchDonationsAPI = async ()=>{
-    const response = await axios.get(`https://localhost:7253/Donations`);
-    const data = response.data
-    dispatch(donationActions.setDonations(data))
-  }
+  // const fetchDonorAPI = async ()=>{
+  //   const response = await axios.get(`https://localhost:7253/Donors`, { headers });
+  //   const data = response.data
+  //   dispatch(donorActions.setDonors(data))
+  // }
+
+  // const fetchDonationsAPI = async ()=>{
+  //   const response = await axios.get(`https://localhost:7253/Donations`);
+  //   const data = response.data
+  //   dispatch(donationActions.setDonations(data))
+  // }
   
+  // useEffect(() => {
+  //   fetchDonorAPI()
+  //   fetchDonationsAPI()
+  // }, [])
+
+  const [data, setData] = useState([])
+
   useEffect(() => {
-    fetchDonorAPI()
-    fetchDonationsAPI()
-  }, [])
+    axios.get(`https://localhost:7253/Donors`, { headers }).then((data) => data.json()).then((data) => setData(data))
+  })
+
+  console.log("This is what I'm calling", data)
   return (
     <div className='lg:w-[80vw] mx-5 h-[80vh] mt-[5em] lg:mt-0'>
       {/* Top */}
@@ -71,7 +82,7 @@ function Dashboard() {
           <h1>Recent Donors:</h1>
           <div className='border w-[85vw] lg:w-[25vw] h-[55vh] overflow-y-scroll bg-white px-3 py-5 flex flex-col gap-5 shadow-md rounded-md'>
             {/* Donor List Shows Here. */}
-            {donorList.map((item)=>{
+            {data.map((item)=>{
                switch(item.bloodType){
                 case "OPositive":
                   bloodTypeAsText = "O+"

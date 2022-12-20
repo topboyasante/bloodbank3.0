@@ -19,8 +19,10 @@ function AdminNavbar() {
       };
       const navigate = useNavigate()
       const dispatch = useDispatch()
+
       function LogOut(){
         dispatch(authActions.logout())
+        localStorage.removeItem('loginToken')
         navigate('/blood-bank')
       }
   return (

@@ -10,6 +10,7 @@ import Swal from 'sweetalert2'
 
 function AdminAddDonor() {
   // const {isOpen, setIsOpen} = useContext(AppContext)
+  const JWT_TOKEN = useSelector((state)=>state.auth.user.JWT)
   const dispatch = useDispatch()
   const donorList = useSelector((state)=>state.donor.donors)
   const navigate = useNavigate();
@@ -76,6 +77,7 @@ function AdminAddDonor() {
     setGender('')
     setPhoneNumber('')
   }
+  const headers = { authorization: `Bearer ${JWT_TOKEN}`}
 
   const handleSubmit =  async (event) => {
     event.preventDefault()
@@ -103,7 +105,7 @@ function AdminAddDonor() {
         gender:gender,
         location:location,
         bloodType:bGroup,
-      }).then((res)=>{
+      },{headers}).then((res)=>{
         Swal.fire({
           title: 'Success!',
           text: 'The New Donor Was Added.',
@@ -133,6 +135,7 @@ function AdminAddDonor() {
       })
     }
   }
+  
   
   return (
     <main className=''>

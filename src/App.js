@@ -25,8 +25,10 @@ import AdminSupply from './pages/Admin/App/AdminSupply'
 import DoesNotExist from './pages/Routing/DoesNotExist'
 import ForgotPassword from './pages/Admin/Authentication/ForgotPassword'
 
+
 function App() {
   const LoginState = useSelector((state)=>state.auth.user.isLoggedIn)
+  const JWT_TOKEN = localStorage.getItem('loginToken')
 
   return (
       <main>
@@ -43,7 +45,7 @@ function App() {
             <Route path='forgot-password' element={<ForgotPassword/>}/>
 
             {/* Blood Bank App Routes */}
-            <Route path='app' element={<ProtectedRoutes isLoggedIn={LoginState}></ProtectedRoutes>}>
+            <Route path='app' element={<ProtectedRoutes isLoggedIn={JWT_TOKEN}></ProtectedRoutes>}>
                 <Route path='dashboard' element={<Dashboard/>}/>
                 <Route path='donor'>
                   <Route path='donors' element={<AdminDonor/>}>
