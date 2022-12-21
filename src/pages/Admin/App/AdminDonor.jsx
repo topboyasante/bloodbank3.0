@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios';
+import { donorActions } from '../../../redux/donorSlice';
 import {IoMdAdd,IoIosSend} from 'react-icons/io'
 import { useSelector,useDispatch  } from 'react-redux'
 import { Link, Outlet } from 'react-router-dom'
@@ -7,6 +9,18 @@ import SearchBar from '../../../components/Navigation/SearchBar'
 
 function AdminDonor() {
   const donorList = useSelector((state)=>state.donor.donors)
+  const dispatch = useDispatch()
+  const headers = { authorization: `Bearer ${JSON.parse(localStorage.getItem('loginToken'))}`}
+  const fetchDonorAPI = async ()=>{
+    const response = await axios.get(`https://localhost:7253/Donors`, { headers });
+    const data = response.data
+    dispatch(donorActions.setDonors(data))
+  }
+
+  useEffect(() => {
+    fetchDonorAPI()
+  }, [])
+
   const [searchKeyword,setSearchKeyword] = useState('')
   function handleSearch (e){
     setSearchKeyword(e.target.value)

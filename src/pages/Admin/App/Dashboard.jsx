@@ -2,14 +2,15 @@
 import axios from 'axios';
 import { donorActions } from '../../../redux/donorSlice';
 import { useSelector,useDispatch  } from 'react-redux'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import MapImg from '../../../Images/map.png'
-import { donationActions } from '../../../redux/donationsSlice';
 import isMaleImg from '../../../Images/isMale.png'
 import isFemaleImg from '../../../Images/isFemale.png'
+import { Link } from 'react-router-dom';
 
 function Dashboard() {
   const donorList = useSelector((state)=>state.donor.donors)
+  const donationsList = useSelector((state)=>state.donations.donations)
   const headers = { authorization: `Bearer ${JSON.parse(localStorage.getItem('loginToken'))}`}
   const dispatch = useDispatch()
   let bloodTypeAsText = ''
@@ -19,16 +20,9 @@ function Dashboard() {
     const data = response.data
     dispatch(donorActions.setDonors(data))
   }
-
-  const fetchDonationsAPI = async ()=>{
-    const response = await axios.get(`https://localhost:7253/Donations`,{headers});
-    const data = response.data
-    dispatch(donationActions.setDonations(data))
-  }
   
   useEffect(() => {
     fetchDonorAPI()
-    fetchDonationsAPI()
   }, [])
 
   return (
@@ -36,20 +30,24 @@ function Dashboard() {
       {/* Top */}
        <div className='flex flex-col lg:flex-row justify-between items-center gap-2'>
         {/* First Item */}
-        <div className='w-[90%] lg:w-[38%] h-[25vh] p-2 shadow-md bg-white rounded-md'>
-          <p className='font-light text-gray-400 mb-2'>Incoming Blood Requests</p>
-          <table className='w-full'>
-              <thead>
-                <tr>
-                  <th className='text-left'>Blood Type</th>
-                  <th className='text-left'>No. Of Requests</th>
-                  <th className='text-left'>Status</th>
-                </tr>
-              </thead>
-          </table>
+        <div className='w-[90%] lg:w-[20%] h-[13vh] p-2 shadow-md bg-white rounded-md'>
+          <p className='font-[500] text-gray-400 mb-2'>Total Donors:</p>
+          <div className='flex items-center justify-end gap-2'>
+            <p className='text-5xl'>{donorList.length}</p>
+            <p className='text-gray-400'>people</p>
+          </div>
+          <Link to='/blood-bank/app/donor/donors' className='underline text-sm'>View Donors</Link>
         </div>
         {/* Second Item */}
-        <div className='w-[90%] lg:w-[38%] h-[25vh] shadow-md p-2 bg-white rounded-md'>
+        <div className='w-[90%] lg:w-[20%] h-[13vh] p-2 shadow-md bg-white rounded-md'>
+          <p className='font-[500] text-gray-400 mb-2'>Total Donations:</p>
+          <div className='flex items-center justify-end gap-2'>
+            <p className='text-5xl'>{donationsList.length}</p>
+          </div>
+          <Link to='/blood-bank/app/donations' className='underline text-sm'>View Donations</Link>
+        </div>
+        {/* Third Item */}
+        <div className='w-[90%] lg:w-[25%] h-[15vh] shadow-md p-2 bg-white rounded-md'>
           <p className='font-light text-gray-400 mb-2'>Outgoing Blood Requests</p>
           <table className='w-full'>
               <thead>
@@ -61,8 +59,8 @@ function Dashboard() {
               </thead>
           </table>
         </div>
-        {/* Third Item */}
-        <div className='w-[90%] lg:w-[20%] h-[25vh] shadow-md p-2 bg-white rounded-md'>
+        {/* Fourth Item */}
+        <div className='w-[90%] lg:w-[20%] h-[15vh] shadow-md p-2 bg-white rounded-md'>
         <p className='font-light text-gray-400 mb-2'>Notifications</p>
         </div>
        </div>

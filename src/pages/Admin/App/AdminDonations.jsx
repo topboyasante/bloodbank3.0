@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import {IoMdAdd} from 'react-icons/io'
 import {FiEdit,FiDelete} from 'react-icons/fi'
 import { Link } from 'react-router-dom'
@@ -10,10 +10,22 @@ import axios from 'axios'
 function AdminDonations() {
   const dispatch = useDispatch()
   const donationsList = useSelector((state)=>state.donations.donations)
+  const headers = { authorization: `Bearer ${JSON.parse(localStorage.getItem('loginToken'))}`}
   const [searchKeyword,setSearchKeyword] = useState('')
   function handleSearch (e){
     setSearchKeyword(e.target.value)
   }
+  const fetchDonationsAPI = async ()=>{
+    await axios.get(`https://localhost:7253/Donations`,{headers})
+    .then((res)=>{
+      dispatch(donationActions.setDonations(res.data))
+    });
+  }
+  useEffect(()=>{
+    fetchDonationsAPI()
+  },[])
+  let bloodTypeAsText = ''
+  
   return (
     <div className='w-screen lg:w-[80vw] mx-5 h-[85vh] mt-[5em] lg:mt-0'>
      
@@ -66,20 +78,44 @@ function AdminDonations() {
              donationsList.filter((item)=>item.donorName.toLowerCase().includes(searchKeyword.toLowerCase())).map((donation)=>{
               function deleteDonation(){
                 dispatch(donationActions.removeDonation(donation.id))
-                axios.delete(`https://localhost:7253/Donations/${donation.id}`)
+                axios.delete(`https://localhost:7253/Donations/${donation.id}`,{headers})
               }
+              switch(donation.bloodGroup){
+                case "OPositive":
+                  bloodTypeAsText = "O+"
+                 break;
+                case "APositive":
+                  bloodTypeAsText = "A+"
+                 break;
+                case "BPositive":
+                  bloodTypeAsText = "B+"
+                 break;
+                case "ABPositive":
+                  bloodTypeAsText = "AB+"
+                 break;
+                case "ABNegative":
+                  bloodTypeAsText = "AB-"
+                 break;
+                case "ANegative":
+                  bloodTypeAsText = "A-"
+                 break;
+                case "BNegative":
+                  bloodTypeAsText = "B-"
+                 break;
+                case "ONegative":
+                  bloodTypeAsText = "O-"
+                 break;
+                 
+               }
               return(
                 <tr key={donation.id}>
                   <td className='text-center p-2'>{donation.id}</td>
-                  <td className='text-center p-2'>{donation.date}</td>
-                  <td className='text-center p-2 capitalize'>{donation.donor}</td>
-                  <td className='text-center p-2 uppercase'>{donation.bGroup}</td>
-                  <td className='text-center p-2'>{donation.qty}</td>
-                  <td className='text-center p-2 capitalize'>{donation.recipient}</td>
+                  <td className='text-center p-2'>{donation.dateofDonation}</td>
+                  <td className='text-center p-2 capitalize'>{donation.donorName}</td>
+                  <td className='text-center p-2 uppercase'>{bloodTypeAsText}</td>
+                  <td className='text-center p-2'>{donation.quantity}</td>
+                  <td className='text-center p-2 capitalize'>{donation.recipientName}</td>
                   <td className='flex justify-center items-center gap-5 p-2'>
-                    <button>
-                      <FiEdit size={25}/>
-                    </button>
                     <button>
                       <FiDelete size={25} onClick={deleteDonation}/>
                     </button>
@@ -89,19 +125,44 @@ function AdminDonations() {
             }): donationsList.map((donation)=>{
               function deleteDonation(){
                 dispatch(donationActions.removeDonation(donation.id))
+                axios.delete(`https://localhost:7253/Donations/${donation.id}`,{headers})
               }
+              switch(donation.bloodGroup){
+                case "OPositive":
+                  bloodTypeAsText = "O+"
+                 break;
+                case "APositive":
+                  bloodTypeAsText = "A+"
+                 break;
+                case "BPositive":
+                  bloodTypeAsText = "B+"
+                 break;
+                case "ABPositive":
+                  bloodTypeAsText = "AB+"
+                 break;
+                case "ABNegative":
+                  bloodTypeAsText = "AB-"
+                 break;
+                case "ANegative":
+                  bloodTypeAsText = "A-"
+                 break;
+                case "BNegative":
+                  bloodTypeAsText = "B-"
+                 break;
+                case "ONegative":
+                  bloodTypeAsText = "O-"
+                 break;
+                 
+               }
               return(
                 <tr key={donation.id}>
                   <td className='text-center p-2'>{donation.id}</td>
-                  <td className='text-center p-2'>{donation.date}</td>
-                  <td className='text-center p-2 capitalize'>{donation.donor}</td>
-                  <td className='text-center p-2 uppercase'>{donation.bGroup}</td>
-                  <td className='text-center p-2'>{donation.qty}</td>
-                  <td className='text-center p-2 capitalize'>{donation.recipient}</td>
+                  <td className='text-center p-2'>{donation.dateofDonation}</td>
+                  <td className='text-center p-2 capitalize'>{donation.donorName}</td>
+                  <td className='text-center p-2 uppercase'>{bloodTypeAsText}</td>
+                  <td className='text-center p-2'>{donation.quantity}</td>
+                  <td className='text-center p-2 capitalize'>{donation.recipientName}</td>
                   <td className='flex justify-center items-center gap-5 p-2'>
-                    <button>
-                      <FiEdit size={25}/>
-                    </button>
                     <button>
                       <FiDelete size={25} onClick={deleteDonation}/>
                     </button>

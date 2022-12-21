@@ -14,6 +14,8 @@ const donorSlice = createSlice({
         addDonor(state,action){
             state.donors.push(action.payload)
         },
+        removeDonor(state,{payload}){
+        }
     }
 })
 export const donorActions = donorSlice.actions

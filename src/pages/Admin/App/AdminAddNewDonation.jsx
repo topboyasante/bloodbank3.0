@@ -9,8 +9,7 @@ import { donationActions } from '../../../redux/donationsSlice'
 function AdminAddNewDonation() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const JWT_TOKEN = useSelector((state)=>state.auth.user.JWT)
-    const headers = { authorization: `Bearer ${JWT_TOKEN}`}
+    const headers = { authorization: `Bearer ${JSON.parse(localStorage.getItem('loginToken'))}`}
     const donationsList = useSelector((state)=>state.donations.donations)
     const donorList = useSelector((state)=>state.donor.donors)
     const [isForStorage,setIsForStorage] = useState(false)
