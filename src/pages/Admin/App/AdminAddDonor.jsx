@@ -10,7 +10,6 @@ import Swal from 'sweetalert2'
 
 function AdminAddDonor() {
   // const {isOpen, setIsOpen} = useContext(AppContext)
-  const JWT_TOKEN = useSelector((state)=>state.auth.user.JWT)
   const dispatch = useDispatch()
   const donorList = useSelector((state)=>state.donor.donors)
   const navigate = useNavigate();
@@ -77,12 +76,11 @@ function AdminAddDonor() {
     setGender('')
     setPhoneNumber('')
   }
-  const headers = { authorization: `Bearer ${JWT_TOKEN}`}
+  const headers = { authorization: `Bearer ${JSON.parse(localStorage.getItem('loginToken'))}`}
 
   const handleSubmit =  async (event) => {
     event.preventDefault()
     const newDonorInfo={
-      id:donorList.length+1 ,
       // img:image,
       fullName:fullName,
       dateofBirth:dob,
@@ -105,7 +103,8 @@ function AdminAddDonor() {
         gender:gender,
         location:location,
         bloodType:bGroup,
-      },{headers}).then((res)=>{
+      },{headers}).
+      then((res)=>{
         Swal.fire({
           title: 'Success!',
           text: 'The New Donor Was Added.',
@@ -113,8 +112,10 @@ function AdminAddDonor() {
           timer: 1500,
           showConfirmButton:false
         })
+        resetForm()
         navigate('/blood-bank/app/donor/donors')
-      }).catch((err)=>{
+      })
+      .catch((err)=>{
         Swal.fire({
           title: 'Error!',
           text: 'The Was A Problem.',
@@ -122,8 +123,8 @@ function AdminAddDonor() {
           confirmButtonText: 'Back',
           confirmButtonColor:'#960000'
         })
+        console.log(err)
       })
-      resetForm()
     }
     else{
       Swal.fire({

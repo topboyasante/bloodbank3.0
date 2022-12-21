@@ -13,6 +13,7 @@ import DonorProfileLg from './components/Cards/DonorProfileLg'
 import AdminAddDonor from './pages/Admin/App/AdminAddDonor'
 import AdminSendRequest from './pages/Admin/App/AdminSendRequest'
 import AdminSettings from './pages/Admin/App/AdminSettings'
+import AdminAccount from './pages/Admin/Settings/AdminAccount'
 
 // Donor
 import DonorLogin from './pages/Donor/LoginSignUp/DonorLogin'
@@ -62,7 +63,10 @@ function App() {
                   <Route index element={<AdminSupply/>}/>
                   <Route path='request-supply' element={<AdminSendRequest/>}/>
                 </Route>
-                <Route path='settings' element={<AdminSettings/>}/>
+                <Route path='settings'>
+                  <Route index element={<AdminSettings/>}/>
+                  <Route path='account' element={<AdminAccount/>}/>
+                </Route>
             </Route>
           </Route>
 

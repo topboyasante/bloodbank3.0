@@ -75,7 +75,7 @@ function AdminDonations() {
         <tbody>
             {
              searchKeyword!=='' ?  
-             donationsList.filter((item)=>item.donorName.toLowerCase().includes(searchKeyword.toLowerCase())).map((donation)=>{
+             donationsList.filter((item)=>item.donorName.toLowerCase().includes(searchKeyword.toLowerCase())).map((donation,index)=>{
               function deleteDonation(){
                 dispatch(donationActions.removeDonation(donation.id))
                 axios.delete(`https://localhost:7253/Donations/${donation.id}`,{headers})
@@ -109,8 +109,8 @@ function AdminDonations() {
                }
               return(
                 <tr key={donation.id}>
-                  <td className='text-center p-2'>{donation.id}</td>
-                  <td className='text-center p-2'>{donation.dateofDonation}</td>
+                  <td className='text-center p-2'>{index + 1 }</td>
+                  <td className='text-center p-2'>{donation.dateofDonation | 'dd/MM/yyyy' }</td>
                   <td className='text-center p-2 capitalize'>{donation.donorName}</td>
                   <td className='text-center p-2 uppercase'>{bloodTypeAsText}</td>
                   <td className='text-center p-2'>{donation.quantity}</td>
@@ -122,7 +122,7 @@ function AdminDonations() {
                   </td>
                 </tr>
               )
-            }): donationsList.map((donation)=>{
+            }): donationsList.map((donation , index)=>{
               function deleteDonation(){
                 dispatch(donationActions.removeDonation(donation.id))
                 axios.delete(`https://localhost:7253/Donations/${donation.id}`,{headers})
@@ -156,8 +156,9 @@ function AdminDonations() {
                }
               return(
                 <tr key={donation.id}>
-                  <td className='text-center p-2'>{donation.id}</td>
-                  <td className='text-center p-2'>{donation.dateofDonation}</td>
+                  <td className='text-center p-2'>{index +1 }</td>
+                  <td className='text-center p-2'>{donation.dateofDonation}
+                  </td>
                   <td className='text-center p-2 capitalize'>{donation.donorName}</td>
                   <td className='text-center p-2 uppercase'>{bloodTypeAsText}</td>
                   <td className='text-center p-2'>{donation.quantity}</td>

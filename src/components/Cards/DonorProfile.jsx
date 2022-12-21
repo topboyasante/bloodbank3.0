@@ -50,8 +50,7 @@ function DonorProfile(props) {
           </div>
 
           <div className='w-[18%] flex items-center gap-5'>
-            <p className='text-2xl uppercase border-r pr-2'>{bloodTypeAsText}</p>
-            <FiDelete size={20} color='gray' className='hover:scale-105 ease duration-150'/>
+            <p className='text-2xl uppercase border-l pl-2'>{bloodTypeAsText}</p>
           </div>
       </main>
     </Link>

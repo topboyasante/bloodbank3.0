@@ -25,7 +25,7 @@ function TopNavbar() {
   })
   
   return (
-    <Link to='/bank/app/settings/account' className='flex justify-start lg:justify-end gap-3 w-[100vw] lg:w-full mb-7 px-5 py-8 text-[#ffffff] lg:text-black items-center h-[5vh] bg-white shadow'>
+    <Link to='/blood-bank/app/settings/account' className='flex justify-start lg:justify-end gap-3 w-[100vw] lg:w-full mb-7 px-5 py-8 text-[#ffffff] lg:text-black items-center h-[5vh] bg-white shadow'>
           <div className='flex flex-col items-end'>
             <p className='text-sm font-[600px]'>{hospitalName}</p>
           </div>
