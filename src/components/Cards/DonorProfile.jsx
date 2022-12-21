@@ -8,7 +8,6 @@ import {FiDelete} from 'react-icons/fi'
 
 function DonorProfile(props) {
  let bloodTypeAsText = ''
-
  switch(props.item.bloodType){
   case "OPositive":
     bloodTypeAsText = "O+"

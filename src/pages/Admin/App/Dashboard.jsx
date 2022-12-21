@@ -1,6 +1,7 @@
 // import { Slider } from '@mui/material'
 import axios from 'axios';
 import { donorActions } from '../../../redux/donorSlice';
+import { donationActions } from '../../../redux/donationsSlice'
 import { useSelector,useDispatch  } from 'react-redux'
 import { useEffect } from 'react';
 import MapImg from '../../../Images/map.png'
@@ -20,9 +21,16 @@ function Dashboard() {
     const data = response.data
     dispatch(donorActions.setDonors(data))
   }
+  const fetchDonationsAPI = async ()=>{
+    await axios.get(`https://localhost:7253/Donations`,{headers})
+    .then((res)=>{
+      dispatch(donationActions.setDonations(res.data))
+    });
+  }
   
   useEffect(() => {
     fetchDonorAPI()
+    fetchDonationsAPI()
   }, [])
 
   return (

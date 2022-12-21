@@ -28,26 +28,26 @@ function AdminNavbar() {
   return (
     <>
         {/*  Navbar For Large Screens: */}
-     <nav className='hidden w-[15vw] h-[100vh] shadow-md lg:flex flex-col justify-evenly p-8'>
-        <img src={Logo} alt="/" className='w-[137px] h-[71px] mb-10'/>
-        <section>
-            <NavLink to='/blood-bank/app/dashboard' exact='true' className='flex items-center gap-2 mb-10 hover:bg-gray-50 p-3 ease duration-200' style={({ isActive }) =>isActive ? activeStyle : undefined}>
+     <nav className='hidden w-[15vw] h-[100vh] shadow-md lg:flex flex-col justify-between p-8'>
+        <section className='flex flex-col'>
+            <img src={Logo} alt="/" className='w-[137px] h-[71px] mb-5'/>
+            <NavLink to='/blood-bank/app/dashboard' exact='true' className='flex items-center gap-2 mb-5 hover:bg-gray-50 p-3 ease duration-200' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <RiDashboardFill size={25}/>
                     <p className='font-light text-md'>Dashboard</p>
             </NavLink>
-            <NavLink to='/blood-bank/app/donor/donors' exact='true' className='flex items-center gap-2 mb-10 hover:bg-gray-50 p-3 ease duration-200' style={({ isActive }) =>isActive ? activeStyle : undefined}>
+            <NavLink to='/blood-bank/app/donor/donors' exact='true' className='flex items-center gap-2 mb-5 hover:bg-gray-50 p-3 ease duration-200' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <RiHeartLine size={25}/>
                     <p className='font-light text-md'>Donor</p>
             </NavLink>
-            <NavLink to='/blood-bank/app/donations' exact='true' className='flex items-center gap-2 mb-10 hover:bg-gray-50 p-3 ease duration-200' style={({ isActive }) =>isActive ? activeStyle : undefined}>
+            <NavLink to='/blood-bank/app/donations' exact='true' className='flex items-center gap-2 mb-5 hover:bg-gray-50 p-3 ease duration-200' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <FaRegIdCard size={25}/>
                     <p className='font-light text-md'>Donations</p>
             </NavLink>
-            <NavLink to='/blood-bank/app/supply' exact='true' className='flex items-center gap-2 mb-10 hover:bg-gray-50 p-3 ease duration-200' style={({ isActive }) =>isActive ? activeStyle : undefined}>
+            <NavLink to='/blood-bank/app/supply' exact='true' className='flex items-center gap-2 mb-5 hover:bg-gray-50 p-3 ease duration-200' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <AiOutlineShoppingCart size={25}/>
                     <p className='font-light text-md'>Supply</p>
             </NavLink>
-            <NavLink to='/blood-bank/app/settings' exact='true' className='flex items-center gap-2 mb-10 hover:bg-gray-50 p-3 ease duration-200' style={({ isActive }) =>isActive ? activeStyle : undefined}>
+            <NavLink to='/blood-bank/app/settings' exact='true' className='flex items-center gap-2 mb-5 hover:bg-gray-50 p-3 ease duration-200' style={({ isActive }) =>isActive ? activeStyle : undefined}>
                     <RiSettings2Line size={25}/>
                     <p className='font-light text-md'>Settings</p>
             </NavLink>

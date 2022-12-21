@@ -30,6 +30,7 @@ function AdminAddNewDonation() {
     const [recipient,setRecipient] = useState('')
 
     const newDonation = {
+      id:donationsList.length+1,
       date:date,
       donor:donor,
       bGroup:bGroup,
