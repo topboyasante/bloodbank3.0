@@ -9,36 +9,28 @@ import isMaleImg from '../../../Images/isMale.png'
 import isFemaleImg from '../../../Images/isFemale.png'
 
 function Dashboard() {
-  // const donorList = useSelector((state)=>state.donor.donors)
-  const JWT_TOKEN = useSelector((state)=>state.auth.user.JWT)
-  const headers = { authorization: `Bearer ${JWT_TOKEN}`}
+  const donorList = useSelector((state)=>state.donor.donors)
+  const headers = { authorization: `Bearer ${JSON.parse(localStorage.getItem('loginToken'))}`}
   const dispatch = useDispatch()
   let bloodTypeAsText = ''
 
-  // const fetchDonorAPI = async ()=>{
-  //   const response = await axios.get(`https://localhost:7253/Donors`, { headers });
-  //   const data = response.data
-  //   dispatch(donorActions.setDonors(data))
-  // }
+  const fetchDonorAPI = async ()=>{
+    const response = await axios.get(`https://localhost:7253/Donors`, { headers });
+    const data = response.data
+    dispatch(donorActions.setDonors(data))
+  }
 
-  // const fetchDonationsAPI = async ()=>{
-  //   const response = await axios.get(`https://localhost:7253/Donations`);
-  //   const data = response.data
-  //   dispatch(donationActions.setDonations(data))
-  // }
+  const fetchDonationsAPI = async ()=>{
+    const response = await axios.get(`https://localhost:7253/Donations`,{headers});
+    const data = response.data
+    dispatch(donationActions.setDonations(data))
+  }
   
-  // useEffect(() => {
-  //   fetchDonorAPI()
-  //   fetchDonationsAPI()
-  // }, [])
-
-  const [data, setData] = useState([])
-
   useEffect(() => {
-    axios.get(`https://localhost:7253/Donors`, { headers }).then((data) => data.json()).then((data) => setData(data))
-  })
+    fetchDonorAPI()
+    fetchDonationsAPI()
+  }, [])
 
-  console.log("This is what I'm calling", data)
   return (
     <div className='lg:w-[80vw] mx-5 h-[80vh] mt-[5em] lg:mt-0'>
       {/* Top */}
@@ -82,7 +74,7 @@ function Dashboard() {
           <h1>Recent Donors:</h1>
           <div className='border w-[85vw] lg:w-[25vw] h-[55vh] overflow-y-scroll bg-white px-3 py-5 flex flex-col gap-5 shadow-md rounded-md'>
             {/* Donor List Shows Here. */}
-            {data.map((item)=>{
+            {donorList.map((item)=>{
                switch(item.bloodType){
                 case "OPositive":
                   bloodTypeAsText = "O+"

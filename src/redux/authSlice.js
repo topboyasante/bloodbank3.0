@@ -6,7 +6,6 @@ const authSlice = createSlice({
         user:{
             hospitalName:'',
             isLoggedIn :false,
-            JWT:''
         }
     },
     reducers:{
@@ -15,9 +14,6 @@ const authSlice = createSlice({
         },
         logout(state){
             state.user.isLoggedIn=false
-        },
-        setJWT(state,{payload}){
-            state.user.JWT=payload
         },
         setHospitalName(state,{payload}){
             state.user.hospitalName = payload

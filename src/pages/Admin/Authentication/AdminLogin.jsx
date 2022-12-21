@@ -14,7 +14,6 @@ const AdminLogin = () => {
   const [userName,setUserName] = useState('')
   const [password,setPassword] = useState('')
   const [canSeePassword,setCanSeePassword] = useState(false)
-  const userJWT = useSelector((state)=>state.auth.user.JWT)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -24,7 +23,6 @@ const AdminLogin = () => {
   })
     .then((res) => {
       dispatch(authActions.login())
-      dispatch(authActions.setJWT(res.data))
       localStorage.setItem('loginToken',JSON.stringify(res.data))
       Swal.fire({
         position: 'top-end',
@@ -83,7 +81,7 @@ const AdminLogin = () => {
           {/* Buttons */}
           <section className='text-white flex flex-col gap-2'>
               <button type="submit" className="bg-[#11BD17] w-[300px] lg:w-[164px] h-[39px] rounded-md
-              hover:scale-105 ease duration-200">
+              hover:scale-105 ease duration-200 mx-auto">
                 <span className='text-base'>Login</span>
               </button>
               <h3 className='w-[90vw] lg:w-full text-center'><Link to = {'/blood-bank/forgot-password'} className="text-[#686667] cursor-pointer underline">Forgot Password?</Link></h3>
