@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Dialog } from '@headlessui/react'
 import Logo from '../../Images/BBLogo.png'
 import {AiOutlineClose} from 'react-icons/ai'
-import {FaInstagram,FaFacebook,FaTwitter,FaWhatsapp,FaDiscord,FaEnvelope,FaHospitalSymbol} from 'react-icons/fa'
+import {FaInstagram,FaFacebook,FaTwitter,FaHospitalSymbol} from 'react-icons/fa'
 import {FiArrowDown} from 'react-icons/fi'
 import {BsPerson} from 'react-icons/bs'
 import FeatureCard from '../../components/Cards/FeatureCard'
@@ -292,9 +292,9 @@ function Homepage() {
       </div>
       {/* Hero */}
       <div className='max-w-[1240px] mx-auto flex flex-col justify-center items-center h-[90vh] p-5 text-white'>
-        <h1 className='font-bold text-4xl lg:text-6xl'>Your Blood Bank. Digitized.</h1>
-        <p className="my-5 lg:text-lg text-center">Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-        Eaque esse laboriosam repellendus blanditiis eum error sint repudiandae dolores ipsum quas.</p>
+        <h1 className='font-bold text-4xl lg:text-6xl'>Your Digitized Blood Bank.</h1>
+        {/* Make Changes */}
+        <p className="my-5 lg:text-lg text-center">An Integrated Blood Bank System. All of Ghana's Banks merged as one.</p>
         <Menu>
           <Menu.Button className='bg-[#960000] text-white px-3 py-2 rounded-lg w-[150px] text-lg shadow-md'>
              Get Started
@@ -366,64 +366,71 @@ function Homepage() {
         </Menu>
       </div>
       </section>
+
       {/* About Section */}
       <div className='bg-[#960000] text-white p-5 flex lg:flex-row flex-col justify-around items-center'>
         <section className='lg:w-[50%]'>
-        <h1 className='font-light text-4xl lg:text-5xl'>Welcome to Bladie.</h1>
-        <p className="my-5">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui rem nesciunt ipsam dicta tempora velit delectus provident inventore voluptas, ut cupiditate sequi laboriosam quam numquam aut dignissimos praesentium, eligendi assumenda corrupti. Obcaecati ducimus quo repellat magni eos? Commodi velit ipsum sapiente ullam deserunt, vel quas facere! Molestiae doloremque nisi unde?</p>
+        <h1 className='font-light text-4xl lg:text-5xl text-center lg:text-left'>Welcome to Bladie.</h1>
+        <p className="my-5 text-center lg:text-left">
+            Welcome to Ghana's first Integrated Blood Bank App.
+        </p>
         </section>
         <img
         className='lg:w-[40%] lg:h-[480px]'
         src='https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
          />
       </div>
+
       {/* Features */}
       <div className='px-5 py-10 max-w-[1240px] mx-auto'>
         <h1 className="text-center lg:text-5xl">Why Bladie?</h1>
-        <p className='text-center my-5 text-gray-500'>Lorem ipsum dolor sit amet.</p>
+        <p className='text-center my-5 text-gray-500'>See why millions of our users use Bladie.</p>
         <section className='grid md:grid-cols-2 lg:grid-cols-3 place-items-center gap-5'>
             <FeatureCard
             header='Fastest Service.'
-            desc='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui rem nesciunt ipsam dicta tempora velit delectus provident inventore voluptas, ut cupiditate sequi laboriosam quam numquam aut dignissimos praesentium, eligendi assumenda'
+            desc='We know how valuable blood is, so we handle your donations and requests with speed.'
             />
             <FeatureCard
             header='24/7 Customer Care.'
-            desc='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui rem nesciunt ipsam dicta tempora velit delectus provident inventore voluptas, ut cupiditate sequi laboriosam quam numquam aut dignissimos praesentium, eligendi assumenda'
+            desc={`Need Help with Bladie? Even at the latest of times, our customer care services are active and ready to help.`}
             />
             <FeatureCard
             header='Easy to Use.'
-            desc='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui rem nesciunt ipsam dicta tempora velit delectus provident inventore voluptas, ut cupiditate sequi laboriosam quam numquam aut dignissimos praesentium, eligendi assumenda'
+            desc='Bladie is the Easiest Blood Bank App on the market.'
             />
             <FeatureCard
             header='Stable Build.'
-            desc='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui rem nesciunt ipsam dicta tempora velit delectus provident inventore voluptas, ut cupiditate sequi laboriosam quam numquam aut dignissimos praesentium, eligendi assumenda'
+            desc='Bladie has a Stable build, so no need to worry about frequent updates!'
             />
             <FeatureCard
             header='Integrated with Google Maps.'
-            desc='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui rem nesciunt ipsam dicta tempora velit delectus provident inventore voluptas, ut cupiditate sequi laboriosam quam numquam aut dignissimos praesentium, eligendi assumenda'
+            desc='Bladie was built with the Google Maps API, to track the location of your requests.'
             />
             <FeatureCard
             header='Quick Access.'
-            desc='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui rem nesciunt ipsam dicta tempora velit delectus provident inventore voluptas, ut cupiditate sequi laboriosam quam numquam aut dignissimos praesentium, eligendi assumenda'
+            desc='Bladie is the most easily accessible blood bank app on the market.'
             />
         </section>
       </div>
+
       {/* Contact */}
       <div className='bg-[#960000] p-5 text-white '>
         <section className='max-w-[1240px] mx-auto'>
           <h1 className="text-3xl text-center">Check out our Pages:</h1>
-          <div className='grid lg:grid-cols-6 place-items-center my-5 gap-5'>
-            <FaInstagram size={30}/>
-            <FaFacebook size={30}/>
+          <div className='grid lg:grid-cols-3 place-items-center my-5 gap-5'>
+            <a href='https://www.instagram.com'>
+              <FaInstagram size={30}/>
+            </a>
+            <a href="https://www.facebook.com">
+              <FaFacebook size={30}/>
+            </a>
+            <a href="https://www.twitter.com">
             <FaTwitter size={30}/>
-            <FaWhatsapp size={30}/>
-            <FaDiscord size={30}/>
-            <FaEnvelope size={30}/>
+            </a>
           </div>
         </section>
       {/* Footer */}
-       <footer className="text-center my-5">2022.Axon Information Systems.</footer>             
+       <footer className="text-center my-5">2023.Axon Information Systems.</footer>             
       </div>
     </div>
   )
