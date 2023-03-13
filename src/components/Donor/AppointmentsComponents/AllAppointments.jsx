@@ -1,25 +1,60 @@
-import { BiSupport } from 'react-icons/bi'
+import { AiFillDelete } from "react-icons/ai";
 import { TbEdit } from "react-icons/tb";
 import { useEffect, useState } from 'react';
 import axios from "axios";
+import Swal from "sweetalert2";
+import { Link,useNavigate } from "react-router-dom";
 
-const AllAppointments = ({searchValue,searchOption}) => {
 
-  const [appointments, setAppointments] = useState([])
+const AllAppointments = ({searchValue}) => {
 
-  useEffect(() =>{
-    const fetchAppointments = async () => {
-      await axios.get('https://localhost:7253/Appointment')
-      .then((response) => {
-        setAppointments(response.data)
-      })
-      .catch(err =>{
-        console.log(err)
-      })
-    }
+  const navigate = useNavigate()
 
-    fetchAppointments()
-  },[])
+  const [appointments, setAppointments] = useState(null)
+
+  const fetchAllAppointments = async () => {
+    const {data} = await axios.get("https://localhost:7253/Appointment");
+    // const allAppointments = data.data;
+    setAppointments(data);
+    // console.log(allAppointments);
+  };
+  
+  console.log(appointments)
+  
+  const handleDeleteAppointment = async (e) => {
+
+    // console.log('delete');
+   try {
+    setAppointments(appointments.filter((appointment) => appointment.id !== appointment.id))
+    await axios.delete(`https://localhost:7253/Appointment/${appointments.id}`)
+    
+   } catch (error) {
+    console.log(error);
+   }
+    // Swal.fire({
+      //   title: 'Are you sure?',
+      //   text: "You won't be able to revert this!",
+      //   icon: 'warning',
+      //   showCancelButton: true,
+      //   confirmButtonColor: '#3085d6',
+      //   cancelButtonColor: '#d33',
+      //   confirmButtonText: 'Yes, delete it!'
+      // }).then((result) => {
+        //   if (result.isConfirmed) {
+          //     Swal.fire(
+            //       'Deleted!',
+            //       'Your file has been deleted.',
+            //       'success'
+            //     )
+            //   }
+            // })
+          }
+          
+          
+          
+          useEffect(() => {
+            fetchAllAppointments();
+  }, []);
 
   
     return ( 
@@ -42,11 +77,11 @@ const AllAppointments = ({searchValue,searchOption}) => {
 
       <tbody>
         {
-            appointments.filter((val) => {
+            appointments ? appointments.filter((val) => {
               if (searchValue === "" ) {
                 return val
               }
-              else if (val.bank.toLowerCase().includes(searchValue.toLowerCase())){
+              else if (val.bloodBank.toLowerCase().includes(searchValue.toLowerCase())){
                 return val
               }
             })
@@ -57,7 +92,7 @@ const AllAppointments = ({searchValue,searchOption}) => {
                         {appointments.id}
                     </td>
                     <td className="text-center">
-                        {appointments.date}
+                        {appointments.date.slice(0,10)}
                     </td>
                     <td className="text-center">
                         {appointments.bloodBank}
@@ -67,18 +102,20 @@ const AllAppointments = ({searchValue,searchOption}) => {
                     </td>
 
                     <td className="justify-center flex space-x-4 py-2 cursor-pointer">
-                        <span><TbEdit/></span>
-                        <span><BiSupport/></span>
+                        <span onClick={()=>{navigate(`/donor/dashboard/appointments/${appointments.id}`)}}> <span><TbEdit/></span></span>
+                      <span onClick={() => handleDeleteAppointment(appointments)}><AiFillDelete/></span>
                     </td>
 
                 </tr>
 
-            ))
+            )) : "Please wait"
         }
        
       </tbody>
     </table>
      );
+
+    //  to={`/donor/dashboard/appointments/edit-appointment/${appointments.id}`}
 }
  
 export default AllAppointments;

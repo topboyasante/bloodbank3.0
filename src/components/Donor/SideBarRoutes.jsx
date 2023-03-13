@@ -11,6 +11,7 @@ import FAQ from "./SettingsComponent/FAQ"
 import Account from "./SettingsComponent/Account"
 import Security from "./SettingsComponent/Security";
 import ChangeProfile from "./ProfileComponents/ChangeProfile"
+import SingleAppointment from "./AppointmentsComponents/SingleAppointment";
 
 
 
@@ -33,6 +34,8 @@ const SideBarRoutes = () => {
         <Route path="/donation-history" element={<DonationHistory />} />
         <Route path="/appointments" element={<Appointments />}/>
         <Route path="/appointments/add-appointments" element={<AddAppointments />}/>
+        <Route path={"/appointments/:id"} element={<SingleAppointment />}/>
+
 
         {/* <Route path='*' element = {<PageNotFound />} /> */}
           

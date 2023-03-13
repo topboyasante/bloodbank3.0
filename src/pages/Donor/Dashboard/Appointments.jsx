@@ -17,7 +17,7 @@ const Appointments = () => {
     <div className="w-full h-screen grid grid-cols-1">
       <section className="mt-[30px] ml-[60px]">
         <h1 className="pb-2">Appointments</h1>
-        <main className="border bg-white h-[590px] w-[1150px] shadow-lg rounded-md  ">
+        <main className="border bg-white h-[90vh] w-[1150px] shadow-lg rounded-md  ">
           {/* appointments nav */}
 
           <section className="flex flex-col pl-[26px]">

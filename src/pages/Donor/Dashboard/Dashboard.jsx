@@ -24,18 +24,6 @@ const DashBoard = () => {
           </div>
         </section>
       </main>
-
-      {/* <main className="lg:hidden md:hidden sm:flex sm:flex-col">
-        <div>
-        <MobileNav />
-        </div>
-
-        <div>
-        <SideBarRoutes/>
-        </div>
-
-
-      </main> */}
     </>
   );
 };

@@ -1,28 +1,63 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const AddAppointments = () => {
   const [bloodbank, setBloodBank] = useState("");
-  const [selectDate, setSelectDate] = useState("");
+  const [date, setSelectDate] = useState();
   const [selectTime, setSelectTime] = useState("");
+  const [location, setLocation] = useState("");
+
+  const data = {
+    bloodBank: bloodbank,
+    date: date,
+    time: selectTime,
+    location: location,
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const data = {
-      bloodBank: bloodbank,
-      date: selectDate,
-      time: selectTime,
-    };
-
+    // console.log(bloodbank, date, selectTime,location);
     await axios
       .post("https://localhost:7253/Appointment", data)
-      .then((response) => {
-        console.log(response);
+      .then((res) => {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Appointment Added Successfully",
+        });
+        // console.log(res);
       })
       .catch((err) => {
         console.log(err);
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "error",
+          title: "Something went wrong",
+        });
       });
   };
 
@@ -36,7 +71,7 @@ const AddAppointments = () => {
           Back
         </Link>
 
-        <main className="border bg-white h-[590px] lg:w-[1150px] sm:w-[360px] shadow-lg rounded-md mt-[13px]">
+        <main className="border bg-white h-[90vh] lg:w-[1150px] sm:w-[360px] shadow-lg rounded-md mt-[13px]">
           <section className="lg:pl-[32px] sm:pl-5 pt-[16px]">
             <h1>New Appointment</h1>
 
@@ -52,7 +87,7 @@ const AddAppointments = () => {
                 <select
                   value={bloodbank}
                   onChange={(event) => setBloodBank(event.target.value)}
-                  type="date"
+                  type="text"
                   className="border-2 outline-none p-2 w-[90%] focus:border-[3px] rounded-md"
                   required
                 >
@@ -65,17 +100,18 @@ const AddAppointments = () => {
               <div className="flex flex-col pb-[42px]">
                 <label className="pb-[5px]">Select Date</label>
                 <select
-                  value={selectDate}
+                  value={date}
                   onChange={(event) => setSelectDate(event.target.value)}
-                  type="time"
+                  type="text"
                   className="border-2 outline-none p-2 w-[90%] focus:border-[3px] rounded-md"
                   required
                 >
-                  <option disabled defaultValue=""></option>
-                  <option value="11/02/2022">11/02/2022</option>
-                  <option value="13/04/2022">13/04/2022</option>
-                  <option value="12/02/2022">12/02/2022</option>
-                  <option value="01/01/2023">01/01/2023</option>
+                  {/* <option disabled defaultValue=""></option> */}
+                  <option>2023-12-11</option>
+                  <option>2023-12-12</option>
+                  <option>2023-12-13</option>
+                  <option>2023-12-14</option>
+                  <option>2023-12-15</option>
                 </select>
               </div>
 
@@ -88,9 +124,26 @@ const AddAppointments = () => {
                   required
                 >
                   <option disabled defaultValue=""></option>
-                  <option value="02:30">02:30</option>
-                  <option value="15:40">15:40</option>
-                  <option value="12:10">12:10</option>
+                  <option >02:30</option>
+                  <option>15:40</option>
+                  <option>12:10</option>
+                  <option>17:10</option>
+                </select>
+              </div>
+
+              <div className="flex flex-col pb-[42px]">
+                <label className="pb-[5px]">Select Location</label>
+                <select
+                  className="border-2 outline-none p-2 w-[90%] focus:border-[3px] rounded-md"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  required
+                >
+                  <option disabled selected></option>
+                  <option>Dansoman</option>
+                  <option>Madina</option>
+                  <option>Kaneshie</option>
+                  <option>Zongo</option>
                 </select>
               </div>
 

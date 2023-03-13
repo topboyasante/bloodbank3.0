@@ -1,12 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import MainImage from "../../../Images/loginImg.png";
 import Bladie from "../../../Images/BBLogo.png";
-import { useState  } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { addDays } from "date-fns";
-import axios from "axios"
-import Swal from 'sweetalert2'
+import { useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const DonorSignUp = () => {
   const [fullName, setFullName] = useState("");
@@ -18,47 +15,64 @@ const DonorSignUp = () => {
   const [password, setPassword] = useState("");
   const [conPassword, setConPassword] = useState("");
   const [bloodGroup, setBloodGroup] = useState("");
-  const [weight, setWeight] = useState()
+  const [weight, setWeight] = useState();
 
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
-        fullName : fullName,
-        email: email,
-        phoneNumber : phone,
-        location : location,
-        dateOfBirth : dateOfBirth,
-        sex : sex,
-        password : password,
-        confirmPassword : conPassword,
-        bloodType : bloodGroup,
-        weight : weight 
-    }
+      fullName: fullName,
+      email: email,
+      phoneNumber: phone,
+      location: location,
+      dateOfBirth: dateOfBirth,
+      sex: sex,
+      password: password,
+      confirmPassword: conPassword,
+      bloodType: bloodGroup,
+      weight: weight,
+    };
 
-    await axios.post('https://localhost:7253/Accounts/register',  data)
-    .then(response =>{
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Donor Successfully Created',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          navigate("/donor/dashboard")
-    })
-    .catch(err => {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Error',
-            showConfirmButton: false,
-            timer: 1500
-          })
-         
-    })
+    await axios
+      .post("https://localhost:7253/Accounts/register", data)
+      .then((response) => {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "User Added Successfully",
+        });
+        navigate("/donor/donor-login");
+      })
+      .catch((err) => {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "error",
+          title: "Something went wrong Try again",
+        });
+      });
   };
 
   return (
@@ -118,21 +132,17 @@ const DonorSignUp = () => {
               />
             </div>
 
-             <div className="mb-3">
-            <label className="font-normal text-sm">Email Address</label>
-            <br />
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="text"
-              className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black"
-              required
-            />
-          </div>
-
-           
-
-           
+            <div className="mb-3">
+              <label className="font-normal text-sm">Email Address</label>
+              <br />
+              <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black"
+                required
+              />
+            </div>
 
             <div className="mb-3">
               <label className="font-normal text-sm">Sex</label>
@@ -151,31 +161,14 @@ const DonorSignUp = () => {
               <label className="font-normal text-sm">Date of Birth</label>
               <br />
 
-              <input 
+              <input
                 className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black"
-                value = {dateOfBirth}
-              type="date" name="" id="" 
-              onChange={() => setDateOfBirth()} />
-              {/* <DatePicker
-                selected={dateOfBirth}
-                onChange={(date) => setDateOfBirth(date)}
-                maxDate={addDays(new Date(), 1)}
-                peekNextMonth
-                showMonthDropdown
-                showYearDropdown
-                dropdownMode="select"
-                // placeholderText="dd mm yyyy"
-                className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black"
-                required
-                /> */}
-
-              {/* <input
                 value={dateOfBirth}
-                onChange={(e) => setDateOfBirth(e.target.value)}
                 type="date"
-                className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black"
-                required
-              /> */}
+                name=""
+                id=""
+                onChange={() => setDateOfBirth()}
+              />
             </div>
 
             <div className="mb-3">
@@ -242,7 +235,9 @@ const DonorSignUp = () => {
             type="submit"
             className="btn btn-md bg-[#11BD17] w-[300px] lg:w-[164px] h-[39px] rounded-md mt-5 border-none"
           >
-            <span className="text-base text-white capitalize font-medium">Sign Up</span>
+            <span className="text-base text-white capitalize font-medium">
+              Sign Up
+            </span>
           </button>
         </form>
 

@@ -1,20 +1,19 @@
-import { DonationHistoryData } from "./DonationHistoryData";
 import { useState,useEffect } from "react";
 import axios from "axios"
 const DonationHistoryComponent = ({searchValue}) => {
 
-  const [donations, setDonations] = useState([])
+  const [donations, setDonations] = useState(null)
 
+  const fetchDonations = async () => {
+    await axios.get('https://localhost:7253/DonationHistory')
+    .then((response) => {
+      setDonations(response.data)
+    })
+    .catch(err =>{
+      console.log(err)
+    })
+  }
   useEffect(() => {
-    const fetchDonations = async () => {
-      await axios.get('https://localhost:7253/DonationHistory')
-      .then((response) => {
-        setDonations(response.data)
-      })
-      .catch(err =>{
-        console.log(err)
-      })
-    }
 
     fetchDonations()
   },[])
@@ -41,7 +40,7 @@ const DonationHistoryComponent = ({searchValue}) => {
       </th>
 
       <tbody>
-        {donations.filter((val) => {
+        {donations ? donations.filter((val) => {
               if (searchValue === "" ) {
                 return val
               }
@@ -53,7 +52,7 @@ const DonationHistoryComponent = ({searchValue}) => {
           <tr key={donation.id} className="border-b-2">
             <td className="text-center py-2">{donation.id}</td>
 
-            <td className="text-center">{donation.date}</td>
+            <td className="text-center">{donation.date.slice(0,10)}</td>
 
             <td className="text-center">{donation.time}</td>
 
@@ -63,7 +62,7 @@ const DonationHistoryComponent = ({searchValue}) => {
 
             <td className="text-center">{donation.contact}</td>
           </tr>
-        ))}
+        )) : "Please wait"}
       </tbody>
     </table>
   );

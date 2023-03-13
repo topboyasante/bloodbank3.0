@@ -1,26 +1,29 @@
-import { BiSupport } from "react-icons/bi";
+import { AiFillDelete } from "react-icons/ai";
+
 import { TbEdit } from "react-icons/tb";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const PendingAppointments = ({ searchValue }) => {
-  const [appointments, setAppointments] = useState([]);
+  const [appointments, setAppointments] = useState(null);
 
+  const navigate = useNavigate()
+
+  const fetchAppointments = async () => {
+    await axios
+      .get("https://localhost:7253/Appointment")
+      .then((response) => {
+        // console.log(response.data)
+        setAppointments(response.data);
+
+        // console.log(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   useEffect(() => {
-    const fetchAppointments = async () => {
-      await axios
-        .get("https://localhost:7253/Appointment")
-        .then((response) => {
-          // console.log(response.data)
-          setAppointments(response.data);
-
-          console.log(response.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-
     fetchAppointments();
   }, []);
 
@@ -44,32 +47,40 @@ const PendingAppointments = ({ searchValue }) => {
 
       <tbody>
         {appointments
-          .filter((val) => {
-            if (searchValue === "") {
-              return val;
-            } else if (
-              val.bloodBank.toLowerCase().includes(searchValue.toLowerCase())
-            ) {
-              return val;
-            }
-          })
-          .map((appointments, index) => (
-            <tr key={index} className="border-b-2">
-              <td className="text-center py-2">{appointments.id}</td>
-              <td className="text-center">{appointments.date}</td>
-              <td className="text-center">{appointments.bloodBank}</td>
-              <td className="text-center">{appointments.time}</td>
+          ? appointments
+              .filter((val) => {
+                if (searchValue === "") {
+                  return val;
+                } else if (
+                  val.bloodBank
+                    .toLowerCase()
+                    .includes(searchValue.toLowerCase())
+                ) {
+                  return val;
+                }
+              })
+              .map((appointments, index) => (
+                <tr key={index} className="border-b-2">
+                  <td className="text-center py-2">{appointments.id}</td>
+                  <td className="text-center">
+                    {appointments.date.slice(0, 10)}
+                  </td>
+                  <td className="text-center">{appointments.bloodBank}</td>
+                  <td className="text-center">{appointments.time}</td>
 
-              <td className="justify-center flex space-x-4 py-2 cursor-pointer">
-                <span>
-                  <TbEdit />
-                </span>
-                <span>
-                  <BiSupport />
-                </span>
-              </td>
-            </tr>
-          ))}
+                  <td className="justify-center flex space-x-4 py-2 cursor-pointer">
+                    <span 
+                    onClick={()=>{navigate(`/donor/dashboard/appointments/${appointments.id}`)}}
+                    >
+                      <TbEdit />
+                    </span>
+                    <span>
+                      <AiFillDelete />
+                    </span>
+                  </td>
+                </tr>
+              ))
+          : "Please wait....."}
       </tbody>
     </table>
   );

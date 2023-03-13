@@ -77,12 +77,14 @@ function App() {
             <Route path="donor-signup" element={<DonorSignUp />} />
 
             {/* dashboard routes */}
-            <Route path = 'dashboard/*' element = {<DonorProtectedRoutes isLoggedIn={LoginState}></DonorProtectedRoutes>} />
-            <Route index element={<DashBoard/>} />
+            <Route path = 'dashboard/*'element={<DashBoard/>}  />
+            {/* <Route index element={<DashBoard/>} /> */}
            </Route>
       </Routes>
       </main>
   )
 }
+
+// element = {<DonorProtectedRoutes isLoggedIn={LoginState}></DonorProtectedRoutes>}
 
 export default App
