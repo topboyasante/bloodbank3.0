@@ -75,7 +75,7 @@ const SingleAppointment = () => {
     fetchAppointment();
   }, []);
 
-  console.log(appointment);
+  
   return (
     <div className="w-full h-screen grid grid-cols-1">
       <section className="mt-[30px] lg:ml-[60px] sm:ml-5">
@@ -89,8 +89,7 @@ const SingleAppointment = () => {
 
             {/* input fields */}
 
-            <form
-            onSubmit={handleSubmit} className="pt-[37px]">
+            <form onSubmit={handleSubmit} className="pt-[37px]">
               <div className="flex flex-col pb-[42px]">
                 <label className="pb-[5px]">Blood Bank</label>
                 <input
@@ -141,7 +140,6 @@ const SingleAppointment = () => {
 
               <input
                 type="submit"
-                // onClick={handleSubmit}
                 value="Update appointment"
                 className="btn bg-dark-red border-none w-[90%] mt-[46px] hover:bg-dark-red"
               />

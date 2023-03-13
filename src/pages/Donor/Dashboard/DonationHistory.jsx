@@ -1,15 +1,10 @@
-import DonationHistoryComponent from '../../../components/Donor/DonationHistory/DonationHistoryComponent';
+import DonationHistoryComponent from "../../../components/Donor/DonationHistory/DonationHistoryComponent";
 import { CiSearch } from "react-icons/ci";
-import {useState} from "react";
-
-
+import { useState } from "react";
 
 const DonationHistory = () => {
+  const [searchValue, setSearchValue] = useState("");
 
-  const [searchValue, setSearchValue] = useState("")
- 
-
-  
   return (
     <div className="w-full h-[93vh] grid grid-cols-1">
       <section className="mt-[30px] ml-[60px]">
@@ -23,8 +18,8 @@ const DonationHistory = () => {
                 </div>
                 <input
                   type="search"
-                  value = {searchValue}
-                  onChange = {(e) => setSearchValue(e.target.value)}
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
                   className="outline-none"
                   id=""
                   placeholder="Search..."
@@ -47,7 +42,7 @@ const DonationHistory = () => {
               </div>
             </div>
 
-            <DonationHistoryComponent searchValue = {searchValue} />
+            <DonationHistoryComponent searchValue={searchValue} />
           </section>
         </main>
 

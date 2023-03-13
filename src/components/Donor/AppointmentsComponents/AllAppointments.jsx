@@ -3,7 +3,7 @@ import { TbEdit } from "react-icons/tb";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 const AllAppointments = ({ searchValue }) => {
   const navigate = useNavigate();

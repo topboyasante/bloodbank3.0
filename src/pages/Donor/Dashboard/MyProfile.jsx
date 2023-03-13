@@ -4,16 +4,16 @@ const MyProfile = () => {
   return (
     <div className="lg:grid lg:grid-cols-3 sm:flex sm:flex-col lg:gap-1 w-full h-screen">
       <div className="border bg-white h-[500px] w-[350px] lg:ml-[80px] sm:ml-5 mt-[90px] rounded-[15px] flex flex-col">
-
-        <Link to={'/donor/dashboard/profile/change-profile'}>
-        <h1 className="text-dark-red text-end w-[90%] pt-[20px] cursor-pointer">Edit</h1>
-        
+        <Link to={"/donor/dashboard/profile/change-profile"}>
+          <h1 className="text-dark-red text-end w-[90%] pt-[20px] cursor-pointer">
+            Edit
+          </h1>
         </Link>
 
         <center>
-        <figure className="py-10">
-          <img src= {Profile} alt="" />
-        </figure>
+          <figure className="py-10">
+            <img src={Profile} alt="" />
+          </figure>
         </center>
 
         <span className="text-xl text-dark-red text-center">Eddy Kobby</span>
@@ -21,37 +21,21 @@ const MyProfile = () => {
         <table className="pt-5 w-[100%] text-center">
           <tbody>
             <tr>
-              <td className="text-base text-door text-end">
-                Location
-              </td>
-              <td>
-                Dansoman, GA
-              </td>
+              <td className="text-base text-door text-end">Location</td>
+              <td>Dansoman, GA</td>
             </tr>
 
             <tr>
-              <td className="text-base text-door text-end">
-                Email
-              </td>
-              <td>
-              kobbyokai18@gmail.com
-              </td>
+              <td className="text-base text-door text-end">Email</td>
+              <td>kobbyokai18@gmail.com</td>
             </tr>
 
             <tr>
-              <td className="text-base text-door text-end">
-                Contact
-              </td>
-              <td>
-              020-371-8200
-              </td>
+              <td className="text-base text-door text-end">Contact</td>
+              <td>020-371-8200</td>
             </tr>
           </tbody>
-            
-          </table>
-
-
-        
+        </table>
       </div>
 
       <div className="border bg-white h-[600px] lg:w-[504px] sm:w-[350px] lg:ml-[70px] sm:ml-5 mt-12 rounded-[15px] text-left flex flex-col pl-5 pt-5 sm:mb-5">
