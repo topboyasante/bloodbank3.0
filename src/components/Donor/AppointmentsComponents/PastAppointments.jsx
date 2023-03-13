@@ -8,19 +8,32 @@ const PastAppointments = ({ searchValue }) => {
 
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const fetchAppointments = async () => {
-      await axios
-        .get("https://localhost:7253/Appointment")
-        .then((response) => {
-          // console.log(response);
-          setAppointments(response.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+  const fetchAppointments = async () => {
+    await axios
+      .get("https://localhost:7253/Appointment")
+      .then((response) => {
+        // console.log(response);
+        setAppointments(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
+
+  const handleDeleteAppointment = async (appointment) => {
+    try {
+      await axios.delete(`https://localhost:7253/Appointment/${appointment.id}`)
+      fetchAppointments()
+
+     } catch (error) {
+      console.log(error);
+     }
+    }
+
+  
+
+  useEffect(() => {
     fetchAppointments();
   }, []);
 
@@ -71,7 +84,7 @@ const PastAppointments = ({ searchValue }) => {
                     onClick={()=>{navigate(`/donor/dashboard/appointments/${appointments.id}`)}}>
                       <TbEdit />
                     </span>
-                    <span>
+                    <span onClick={() => {handleDeleteAppointment(appointments)}}>
                       <AiFillDelete />
                     </span>
                   </td>

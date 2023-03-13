@@ -14,15 +14,24 @@ const PendingAppointments = ({ searchValue }) => {
     await axios
       .get("https://localhost:7253/Appointment")
       .then((response) => {
-        // console.log(response.data)
+        
         setAppointments(response.data);
-
-        // console.log(response.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  const handleDeleteAppointment = async (appointment) => {
+    try {
+      await axios.delete(`https://localhost:7253/Appointment/${appointment.id}`)
+      fetchAppointments()
+
+     } catch (error) {
+      console.log(error);
+     }
+    }
+
   useEffect(() => {
     fetchAppointments();
   }, []);
@@ -74,7 +83,7 @@ const PendingAppointments = ({ searchValue }) => {
                     >
                       <TbEdit />
                     </span>
-                    <span>
+                    <span onClick={()=>{handleDeleteAppointment(appointments)}}>
                       <AiFillDelete />
                     </span>
                   </td>

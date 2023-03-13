@@ -8,12 +8,12 @@ import { AiOutlineInfoCircle,AiOutlineQuestionCircle } from "react-icons/ai";
 
 const Settings = () => {
     return ( 
-        <div className="w-full h-screen grid grid-cols-1">
+        <div className="w-full h-[93vh] grid grid-cols-1">
         <section className="mt-[30px] lg:ml-[60px] sm:ml-[10px]">
         <h1 className="pb-2">
             Settings
         </h1>
-        <main className="border bg-white h-[590px] lg:w-[1150px] sm:w-[370px] shadow-lg rounded-md">
+        <main className="border bg-white h-[80vh] lg:w-[70vw] sm:w-[370px] shadow-lg rounded-md">
             <div className="grid lg:grid-cols-3 sm:grid-cols-2 sm:grid-rows-3 lg:mt-[80px] lg:ml-[93px]">
                 <Link to={'/donor/dashboard/settings/notifications'}>
                 <div className="border-2 w-[180px] h-[149px] rounded-2xl shadow-md lg:mb-[77px] sm:mb-[20px] cursor-pointer">

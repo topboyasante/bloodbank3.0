@@ -11,10 +11,10 @@ const DonationHistory = () => {
 
   
   return (
-    <div className="w-full h-screen grid grid-cols-1">
+    <div className="w-full h-[93vh] grid grid-cols-1">
       <section className="mt-[30px] ml-[60px]">
         <h1 className="pb-2">Donation History</h1>
-        <main className="border bg-white h-[590px] w-[1150px] shadow-lg rounded-md  ">
+        <main className="border bg-white h-[80vh] w-[70vw] shadow-lg rounded-md  ">
           <section className="flex flex-col pl-[26px] pt-[41px]">
             <div className="flex flex-row space-x-10 pr-5 text-door">
               <div className="border flex flex-row px-4 py-1 rounded-md space-x-5">
