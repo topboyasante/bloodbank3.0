@@ -4,34 +4,43 @@ import Bladie from "../../../Images/BBLogo.png";
 import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import InputForm from "../../../components/InputForm";
 
 const DonorSignUp = () => {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [location, setLocation] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState();
-  const [sex, setSex] = useState("");
-  const [password, setPassword] = useState("");
-  const [conPassword, setConPassword] = useState("");
+  const initialValues = {
+    fullName: "",
+    email: "",
+    phone: "",
+    location: "",
+    dateOfBirth: "",
+    sex: "",
+    password: "",
+    conPassword: "",
+    weight: 50,
+  };
+  const [values, setValues] = useState(initialValues);
+
   const [bloodGroup, setBloodGroup] = useState("");
-  const [weight, setWeight] = useState();
 
   const navigate = useNavigate();
+
+  const handleOnChange = (event) => {
+    setValues({ ...values, [event.target.name]: event.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
-      fullName: fullName,
-      email: email,
-      phoneNumber: phone,
-      location: location,
-      dateOfBirth: dateOfBirth,
-      sex: sex,
-      password: password,
-      confirmPassword: conPassword,
+      fullName: values.fullName,
+      email: values.email,
+      phoneNumber: values.phone,
+      location: values.location,
+      dateOfBirth: values.dateOfBirth,
+      sex: values.sex,
+      password: values.password,
+      confirmPassword: values.conPassword,
       bloodType: bloodGroup,
-      weight: weight,
+      weight: values.weight,
     };
 
     await axios
@@ -95,95 +104,68 @@ const DonorSignUp = () => {
         {/* Input Areas */}
         <form onSubmit={handleSubmit} className="flex flex-col items-center">
           <section className="grid lg:grid-cols-2 place-items-center gap-5">
-            <div className="mb-3">
-              <label className="font-normal text-sm">Full Name</label>
-              <br />
-              <input
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                type="text"
-                className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black"
-                required
-              />
-            </div>
+            {/* full name */}
+            <InputForm
+              value={values.fullName}
+              name="fullName"
+              handleChange={handleOnChange}
+              type="text"
+              labelText="Full Name"
+            />
 
-            <div className="mb-3">
-              <label className="font-normal text-sm">Phone Number</label>
-              <br />
-              <input
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                type="tel"
-                maxLength={14}
-                className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black"
-                required
-              />
-            </div>
+            {/* phone number */}
+            <InputForm
+              value={values.phone}
+              name="phone"
+              handleChange={handleOnChange}
+              type="tel"
+              labelText="Phone Number"
+            />
 
-            <div className="mb-3">
-              <label className="font-normal text-sm">Location</label>
-              <br />
-              <input
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                type="text"
-                className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black"
-                required
-              />
-            </div>
+            {/*location  */}
+            <InputForm
+              value={values.location}
+              name="location"
+              handleChange={handleOnChange}
+              type="text"
+              labelText="Location"
+            />
 
-            <div className="mb-3">
-              <label className="font-normal text-sm">Email Address</label>
-              <br />
-              <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                type="text"
-                className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black"
-                required
-              />
-            </div>
+            {/* email address */}
+            <InputForm
+              value={values.email}
+              name="email"
+              handleChange={handleOnChange}
+              type="email"
+              labelText="Email Address"
+            />
 
-            <div className="mb-3">
-              <label className="font-normal text-sm">Sex</label>
-              <br />
-              <input
-                value={sex}
-                onChange={(e) => setSex(e.target.value)}
-                type="text"
-                maxLength={6}
-                className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black"
-                required
-              />
-            </div>
+            {/* Sex */}
+            <InputForm
+              value={values.sex}
+              name="sex"
+              handleChange={handleOnChange}
+              type="text"
+              labelText="Sex"
+            />
 
-            <div className="mb-3">
-              <label className="font-normal text-sm">Date of Birth</label>
-              <br />
+            {/* date of birth */}
+            <InputForm
+              value={values.dateOfBirth}
+              name="date Ofbirth"
+              handleChange={handleOnChange}
+              type="date"
+              labelText="Date Of Birth"
+            />
 
-              <input
-                className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black"
-                value={dateOfBirth}
-                type="date"
-                name=""
-                id=""
-                onChange={() => setDateOfBirth()}
-              />
-            </div>
-
-            <div className="mb-3">
-              <label className="font-normal text-sm">Weight</label>
-              <br />
-              <input
-                value={weight}
-                onChange={(e) => setWeight(e.target.value)}
-                type="number"
-                min={50}
-                max={400}
-                className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black"
-                required
-              />
-            </div>
+            {/* weight */}
+            <InputForm
+              value={values.weight}
+              name="weight"
+              handleChange={handleOnChange}
+              type="number"
+              labelText="Weight"
+            />
 
             <div className="mb-3">
               <label className="font-normal text-sm">Blood Type</label>
@@ -191,10 +173,12 @@ const DonorSignUp = () => {
               <select
                 value={bloodGroup}
                 onChange={(e) => setBloodGroup(e.target.value)}
-                className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black"
+                className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2"
                 required
               >
-                <option value="Select Blood Type">Select Blood Type</option>
+                <option value="Select Blood Type" disabled>
+                  Select Blood Type
+                </option>
                 <option value="A+">A+</option>
                 <option value="A-">A-</option>
                 <option value="B+">B+</option>
@@ -206,29 +190,23 @@ const DonorSignUp = () => {
               </select>
             </div>
 
-            <div className="mb-3">
-              <label className="font-normal text-sm">Password</label>
-              <br />
-              <input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black"
-                required
-              />
-            </div>
+            {/* password */}
+            <InputForm
+              value={values.password}
+              name="password"
+              handleChange={handleOnChange}
+              type="password"
+              labelText="Password"
+            />
 
-            <div className="mb-3">
-              <label className="font-normal text-sm"> Confirm Password</label>
-              <br />
-              <input
-                value={conPassword}
-                onChange={(e) => setConPassword(e.target.value)}
-                type="password"
-                className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[300px] p-2 focus:border-black"
-                required
-              />
-            </div>
+            {/* confirm password */}
+            <InputForm
+              value={values.conPassword}
+              name="conPassword"
+              handleChange={handleOnChange}
+              type="password"
+              labelText="Confirm Password"
+            />
           </section>
 
           <button
@@ -251,11 +229,10 @@ const DonorSignUp = () => {
             >
               Login
             </Link>
+            <h1>{bloodGroup}</h1>
           </h3>
         </div>
       </section>
-
-      <h1>{dateOfBirth}</h1>
     </main>
   );
 };

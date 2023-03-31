@@ -7,20 +7,29 @@ import { useDispatch } from "react-redux";
 import { authActions } from "../../../redux/authSlice";
 import axios from "axios";
 import Swal from "sweetalert2";
+import InputForm from "../../../components/InputForm";
 
 function DonorLogin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
+  const [values, setValues] = useState(initialValues);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const handleonChange = (event) => {
+    setValues({ ...values, [event.target.name]: event.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = {
-      email: email,
-      password: password,
+      email: values.email,
+      password: values.password,
     };
 
     await axios
@@ -75,29 +84,21 @@ function DonorLogin() {
         <img src={Bladie} alt="/" className="mx-auto w-[200px]" />
         <form onSubmit={handleSubmit} className="flex flex-col items-center">
           {/* User Inputs */}
-          <div className="mb-3">
-            <label className="font-normal text-sm">Email Address</label>
-            <br />
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="email"
-              className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2"
-              required
-            />
-          </div>
+          {/* email */}
 
-          <div className="mb-3">
-            <label className="font-normal text-sm">Password</label>
-            <br />
-            <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              type="password"
-              className="outline-none border-2 border-input-color rounded-lg h-[45.47px] w-[300px] lg:w-[365px] p-2"
-              required
-            />
-          </div>
+          <InputForm
+            name={"email"}
+            value={values.email}
+            type={"email"}
+            handleChange={handleonChange}
+          />
+          <InputForm
+            labelText="password"
+            name={"password"}
+            value={values.password}
+            type={"password"}
+            handleChange={handleonChange}
+          />
 
           <br />
 
